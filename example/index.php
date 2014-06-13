@@ -13,7 +13,8 @@ class index extends \PHPUIF\Document {
 		
 		$form = $body->addForm(1, 'myForm', '/');
 		$block = $form->addBlock('div', 'myClass');
-		$block->addTextField('myTextField', 'My Text Field');
+		$field = $block->addTextField('myTextField', 'My Text Field');
+		
 		
 	
 	}
