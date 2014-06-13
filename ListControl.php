@@ -31,14 +31,6 @@ class ListControl extends OwnedControl {
 	protected $itemTag2 = 'dd';
 	
 	/**
-	 * type - ul, ol, dl
-	 * 
-	 * @var string
-	 * @access protected
-	 */
-	protected $type;
-	
-	/**
 	 * listType - disc | circle | square
 	 * 
 	 * @var string
@@ -60,7 +52,7 @@ class ListControl extends OwnedControl {
 	 * @return void
 	 */
 	public function setType($type) {
-		switch ($this->type) {
+		switch ($type) {
 			case 'ul': 
 				$this->tag = "ul";
 				$this->itemTag = "li"; 
@@ -101,7 +93,7 @@ class ListControl extends OwnedControl {
 	 * @return void
 	 */
 	public function addItem($content = null) {
-		$ctrl = new TBlockControl($this, $this->itemtag);
+		$ctrl = new BlockControl($this, $this->itemTag);
 		$ctrl->setContent($content);
 		$this->AddControl($ctrl);
 		return $ctrl;
@@ -120,7 +112,7 @@ class ListControl extends OwnedControl {
 			if (is_array($row)) {
 				$item = $this->addItem($key);
 				$list = $item->addList('ul');
-				$list->AddItems($row);
+				$list->addItems($row);
 			} else {
 				$this->addItem($row);
 			}
