@@ -103,7 +103,7 @@ class TableControl extends OwnedControl {
 	}
 	
 	public function cell($col, $row) {
-		if (!$this->isfilled) {
+		if (!$this->isFilled) {
 			return false;
 		}
 		
