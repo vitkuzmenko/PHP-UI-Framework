@@ -50,7 +50,7 @@ class FormSelect extends FormControl {
 	 * @return void
 	 */
 	protected function setDefaultAttrs() {
-		parent::SetDefAttrs();
+		parent::setDefaultAttrs();
 		if ($this->size > 0) {
 			$this->setAttr('size', $this->size);
 			$this->setAttr('multiple', 'multiple');
@@ -94,15 +94,15 @@ class FormSelect extends FormControl {
 	 */
 	public function addItems(array $value = array(), array $text = array()) {
 	
-		if (count($value) & count($texts) == 0) {
+		if (count($value) & count($text) == 0) {
 			foreach ($value as $key => $value) {
 				$this->addItem($value);
 			}
 		}
 		
-		if (count($value) == count($texts)) {
+		if (count($value) == count($text)) {
 			foreach ($value as $key => $value) {
-				$this->addItem($value, $texts[$key]);
+				$this->addItem($value, $text[$key]);
 			}
 		}
 
@@ -112,12 +112,12 @@ class FormSelect extends FormControl {
 	 * setSelected function.
 	 * Set default selected value in select list.
 	 * 
-	 * @access protected
+	 * @access public
 	 * @param mixed $selectValue
 	 * @param bool $checkText (default: false)
 	 * @return void
 	 */
-	protected function setSelected($selectValue, $checkText = false) {
+	public function setSelected($selectValue, $checkText = false) {
 	
 		foreach ($this->controls as $ctrl) {
 
