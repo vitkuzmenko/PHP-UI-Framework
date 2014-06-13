@@ -13,7 +13,10 @@ class index extends \PHPUIF\Document {
 		
 		$form = $body->addForm(1, 'myForm', '/');
 		$block = $form->addBlock('div', 'myClass');
-		$field = $block->addTextField('myTextField', 'My Text Field');
+		$block->addTextField('myTextField', 'My Text Field');
+		$block->addTextArea();
+		$block->addSelectField('mySelect', array(1, 2, 3), array('First', 'Second', 'Third'), 2);
+		$block->addSelectField('mySelect', array(1, 2, 3), array(), 2);
 		
 		$items = array(
 			'hello',
@@ -47,12 +50,10 @@ class index extends \PHPUIF\Document {
 		$table->fillRow(1, array(4, 5, 6));
 		$table->fillRow(2, array(7, 8, 9));
 		
-		
-	
+		$table->cell(1, 1)->setContent('+');
 	}
 	
 }
-
 
 $document = new index();
 $document->printAll();
