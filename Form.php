@@ -166,7 +166,7 @@ class Form extends BlockControl {
 		return $ctrl;
 	}
 	
-	public function addTexArea($name = null, $placeholder = null, $value = null) {
+	public function addTextArea($name = null, $placeholder = null, $value = null) {
 		$ctrl = new FormTextArea($this, $name);
 		$ctrl->setPlaceholder($placeholder);
 		$ctrl->setContent($value);
