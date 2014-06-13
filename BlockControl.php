@@ -104,7 +104,7 @@ class BlockControl extends OwnedControl {
 		return $ctrl;
 	}
 	
-	public function addTable($cols, $rows, $autoFill = true, $headrow = -1) {
+	public function addTable($cols = 0, $rows = 0, $autoFill = true, $headrow = -1) {
 		$ctrl = new TableControl($this, $cols, $rows, $autoFill = true, $headrow);
 		$this->addControl($ctrl);
 		return $ctrl;
