@@ -86,7 +86,7 @@ class FormTextArea extends FormControl {
 	 * @param mixed $placeholder
 	 * @return void
 	 */
-	public function setPlaeholder($placeholder) {
+	public function setPlaceholder($placeholder) {
 		$this->setAttr('placeholder', $placeholder);
 	}
 	
