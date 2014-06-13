@@ -15,6 +15,38 @@ class index extends \PHPUIF\Document {
 		$block = $form->addBlock('div', 'myClass');
 		$field = $block->addTextField('myTextField', 'My Text Field');
 		
+		$items = array(
+			'hello',
+			'good' => array('goodwin'),
+			'ask'
+		);
+		
+		$list = $body->addList('ul');
+		$list->addItems($items);
+
+		$list = $body->addList('ul');
+		$item = $list->addItem();
+		$item->setClass('list-item');
+		$item->addDiv('sider')->setContent('Sider');
+		
+		$table = $body->addTable();
+		$row = $table->addRow(array(), true);
+		$cell = $row->addCell();
+		$cell->setContent('Cell 1');
+		$cell = $row->addCell();
+		$cell->setContent('Cell 2');
+		$row = $table->addRow();
+		$cell = $row->addCell();
+		$cell->setContent('Cell 1');
+		$cell = $row->addCell();
+		$cell->setContent('Cell 2');
+
+
+		$table = $body->addTable(3, 3);
+		$table->fillRow(0, array(1, 2, 3));
+		$table->fillRow(1, array(4, 5, 6));
+		$table->fillRow(2, array(7, 8, 9));
+		
 		
 	
 	}
