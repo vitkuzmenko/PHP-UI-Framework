@@ -51,6 +51,7 @@ class index extends \PHPUIF\Document {
 		$table->fillRow(2, array(7, 8, 9));
 		
 		$table->cell(1, 1)->setContent('+');
+		
 	}
 	
 }
