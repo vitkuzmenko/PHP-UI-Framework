@@ -91,6 +91,9 @@ class Form extends BlockControl {
 	
 	public function addInput($type, $name = null) {
 		$ctrl = new FormInput($this, $type, $name);
+		if ($this->nameAsId) {
+			$ctrl->setId($name);
+		}
 		$this->AddControl($ctrl);
 		return $ctrl;
 	}
@@ -139,6 +142,11 @@ class Form extends BlockControl {
 	
 	public function addCheckBox($name = null, $checked = false) {
 		$ctrl = $this->addInput('checkbox', $name);
+		
+		if ($this->nameAsId) {
+			$ctrl->setId($name);
+		}
+		
 		if ($checked) {
 			$ctrl->setAttr('checked', 'checked');
 		}
@@ -158,6 +166,10 @@ class Form extends BlockControl {
 		$ctrl = new FormSelect($this, $name);
 		$ctrl->addItems($value, $text);
 		
+		if ($this->nameAsId) {
+			$ctrl->setId($name);
+		}
+		
 		if ($selectedValue) {
 			$ctrl->setSelected($selectedValue);
 		}
@@ -170,6 +182,11 @@ class Form extends BlockControl {
 		$ctrl = new FormTextArea($this, $name);
 		$ctrl->setPlaceholder($placeholder);
 		$ctrl->setContent($value);
+		
+		if ($this->nameAsId) {
+			$ctrl->setId($name);
+		}
+
 		$this->AddControl($ctrl);
 		return $ctrl;
 	}
@@ -191,6 +208,17 @@ class Form extends BlockControl {
 		return $ctrl;
 	}
 	
+	public function addFieldset($legend = null) {
+		
+		$fieldset = $this->addBlock('fieldset');
+		
+		if ($legend) {
+			$fieldset->addBlock('legend', null, null, $legend);
+		}
+		
+		return $fieldset;
+	}
+
 	public function addDiv($class = null, $id = null, $content = null) {
 		return $this->addBlock('div', $class, $content);
 	}

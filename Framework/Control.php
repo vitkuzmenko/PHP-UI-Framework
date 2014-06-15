@@ -12,8 +12,6 @@ namespace PHPUIF;
 
 require_once realpath(dirname(__FILE__)) . '/PHPUIFramework.php';
 
-require_once 'AttrController.php';
-
 class Control extends ComponentController {
 	
 	protected $tag;          //e.g. input
@@ -72,6 +70,10 @@ class Control extends ComponentController {
 	public function setAttr($key, $value) {
 		$this->attrController->setAttr($key, $value);
 		return $this;
+	}
+	
+	public function removeAttr($key) {
+		$this->attrController->removeAttr($key);
 	}
 	
 	// !Class Atribute Managment

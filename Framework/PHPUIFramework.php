@@ -6,11 +6,8 @@ require_once PHPUIF_PATH . '/ObjectController.php';
 require_once PHPUIF_PATH . '/ComponentController.php';
 require_once PHPUIF_PATH . '/Control.php';
 require_once PHPUIF_PATH . '/OwnedControl.php';
-
-
 require_once PHPUIF_PATH . '/AttrController.php';
 require_once PHPUIF_PATH . '/BlockControl.php';
-
 require_once PHPUIF_PATH . '/Document.php';
 require_once PHPUIF_PATH . '/DocumentBody.php';
 require_once PHPUIF_PATH . '/DocumentHead.php';

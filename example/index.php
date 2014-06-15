@@ -1,8 +1,8 @@
 <?php
 
-require_once '../PHPUIFramework.php';
+require_once '../FrameworkExtensions/Bootstrap3/Bootstrap.php';
 
-class index extends \PHPUIF\Document {
+class index extends \Bootstrap\Document {
 	
 	public function __construct() {
 		parent::__construct('hello', 'utf-8', 'en');
@@ -17,6 +17,8 @@ class index extends \PHPUIF\Document {
 		$block->addTextArea();
 		$block->addSelectField('mySelect', array(1, 2, 3), array('First', 'Second', 'Third'), 2);
 		$block->addSelectField('mySelect', array(1, 2, 3), array(), 2);
+		
+		$form->addFormGroupWithLabelAndTextField('myGroup', 'My Field', 'Placeholder');
 		
 		$items = array(
 			'hello',

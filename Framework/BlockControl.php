@@ -123,7 +123,7 @@ class BlockControl extends OwnedControl {
 	}
 
 	public function addJSFile($file) {
-		$ctrl = $this->addBlock('script', null, null, $script);
+		$ctrl = $this->addBlock('script');
 		$ctrl->setAttr('type','text/javascript');
 		$ctrl->setAttr('src', $file);
 		return $ctrl;
