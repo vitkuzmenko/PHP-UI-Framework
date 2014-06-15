@@ -104,13 +104,13 @@ class BlockControl extends OwnedControl {
 		return $ctrl;
 	}
 	
-	public function addTable($cols = 0, $rows = 0, $autoFill = true, $headrow = -1) {
-		$ctrl = new TableControl($this, $cols, $rows, $autoFill = true, $headrow);
+	public function addTable($cols = 0, $rows = 0, $autoFill = true, $headRowIndex = -1) {
+		$ctrl = new TableControl($this, $cols, $rows, $autoFill = true, $headRowIndex);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 
-	public function addList($type, $type = 'ul') {
+	public function addList($type = 'ul') {
 		$ctrl = new ListControl($this, $type);
 		$this->AddControl($ctrl);
 		return $ctrl;
