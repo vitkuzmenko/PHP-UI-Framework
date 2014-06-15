@@ -85,14 +85,14 @@ class TableControl extends OwnedControl {
 		return $row;
 	}
 	
-	public function row($rowId) {
+	public function row($rowIndex) {
 		if (!$this->isFilled) {
 			return null;
 		}
 		
 		$rows = $this->getControls('tr');
 		
-		return $rows[$rowId];
+		return $rows[$rowIndex];
 	}
 	
 	public function fillRow($rowId, array $value = array()) {
