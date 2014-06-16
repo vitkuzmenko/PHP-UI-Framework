@@ -9,51 +9,30 @@ class index extends \Bootstrap\Document {
 	
 		$body = $this->body;
 		
-		$body->addDiv()->setContent('Hello World!');
-		
 		$form = $body->addForm(1, 'myForm', '/');
-		$block = $form->addBlock('div', 'myClass');
-		$block->addTextField('myTextField', 'My Text Field');
-		$block->addTextArea();
-		$block->addSelectField('mySelect', array(1, 2, 3), array('First', 'Second', 'Third'), 2);
-		$block->addSelectField('mySelect', array(1, 2, 3), array(), 2);
-		
-		$form->addFormGroupWithLabelAndTextField('myGroup', 'My Field', 'Placeholder');
-		
-		$items = array(
-			'hello',
-			'good' => array('goodwin'),
-			'ask'
-		);
-		
-		$list = $body->addList('ul');
-		$list->addItems($items);
 
-		$list = $body->addList('ul');
-		$item = $list->addItem();
-		$item->setClass('list-item');
-		$item->addDiv('sider')->setContent('Sider');
+		$form->setFormInline(true, false);
+		$form->setFormHorizontal();
+		$form->setHorizontalLabelOffset(2);
 		
-		$table = $body->addTable();
-		$row = $table->addRow(array(), true);
-		$cell = $row->addCell();
-		$cell->setContent('Cell 1');
-		$cell = $row->addCell();
-		$cell->setContent('Cell 2');
-		$row = $table->addRow();
-		$cell = $row->addCell();
-		$cell->setContent('Cell 1');
-		$cell = $row->addCell();
-		$cell->setContent('Cell 2');
-
-
-		$table = $body->addTable(3, 3);
-		$table->fillRow(0, array(1, 2, 3));
-		$table->fillRow(1, array(4, 5, 6));
-		$table->fillRow(2, array(7, 8, 9));
+		$form->addFormGroupWithLabelTextFieldAndHelpBlock('myGroup', 'My Field', 'Placeholder', null, 'Help Block');
 		
-		$table->cell(1, 1)->setContent('+');
+		$successGroup = $form->addFormGroupWithLabelAndTextField('myGroup', 'My Field', 'Placeholder');
+		$successGroup->setSuccessState(true);
 		
+		$warningGroup = $form->addFormGroupWithLabelAndTextField('myGroup', 'My Field', 'Placeholder');
+		$warningGroup->setWarningState(true);
+		
+		$errorGroup = $form->addFormGroupWithLabelAndTextField('myGroup', 'My Field', 'Placeholder');
+		$errorGroup->setErrorState(true);
+		
+		$form->addFormGroupWithSelectField('mySelect', 'My Select', array(1, 2, 3));
+		
+		$form->addFormGroupWithCheckBox('myCheckBox', 'My Checkbox');
+		
+		$form->addFormGroupWithRadioButton('myRadioButton', 'My Radio Button');
+		$form->addFormGroupWithRadioButton('myRadioButton', 'My Radio Button', null, true);
+		$form->addFormGroupWithRadioButton('myRadioButton', 'My Radio Button');
 	}
 	
 }
