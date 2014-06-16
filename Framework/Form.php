@@ -62,6 +62,7 @@ class Form extends BlockControl {
 	 * Method 1: Get. Spaces replaces as +. Symbols not encoded.
 	 * Method 2: Post. This method for post request and file submit.
 	 * Method 3: This methos for JavaScript handler
+	 * Method 4: Just Block
 	 * 
 	 * @access public
 	 * @param int $method
@@ -118,11 +119,9 @@ class Form extends BlockControl {
 		return $ctrl;
 	}
 	
-	public function addLabel($for, $text) {
-		$ctrl = new BlockControl($this, 'label');
-		$ctrl->setAttr('for', $for);
-		$ctrl->setContent($text);
-		$this->addControl($ctrl);
+	public function addLabel($for = null, $text = null) {
+		$ctrl = $this->addBlock('label', null, null, $text);
+		$ctrl->setAttr('for', $for);		
 		return $ctrl;
 	}
 	
@@ -194,7 +193,7 @@ class Form extends BlockControl {
 	// !Block
 
 	public function addBlock($tag = null, $class = null, $id = null, $content = null) {
-		$ctrl = new Form($this, 3, null);
+		$ctrl = new Form($this, 4, null);
 		$ctrl->tag = $tag;
 		
 		if ($tag == null) {

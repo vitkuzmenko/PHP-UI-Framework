@@ -90,7 +90,7 @@ class Control extends ComponentController {
 	
 	public function addClass($value) {
 	
-		if ($this->attrController->hasAttr()) {
+		if ($this->attrController->hasAttr('class')) {
 			$currentClass = $this->attrController->attrValue('class');
 		} else {
 			$currentClass = '';
@@ -111,7 +111,7 @@ class Control extends ComponentController {
 		$mergedClassArray = array_merge($curretClassArray, $addedClassArray);
 		$classInString = implode(' ', $mergedClassArray);
 		
-		$this->setAttr('class', $classes);
+		$this->setAttr('class', $classInString);
 		
 		return $this;
 	}

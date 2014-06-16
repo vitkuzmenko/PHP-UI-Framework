@@ -22,7 +22,7 @@ class Document extends OwnedControl {
 	
 	public $body;
 	
-	public function __construct($title = null, $charset = 'utf-8', $lang = null) {
+	public function __construct($title = null, $charset = 'utf-8', $lang = null, $initBody = true) {
 			
 		parent::__construct(null);
 		
@@ -35,8 +35,10 @@ class Document extends OwnedControl {
 		$this->head = new DocumentHead($this, $this->title, $charset);
 		$this->AddControl($this->head);
 		
-		$this->body = new DocumentBody($this);
-		$this->AddControl($this->body);
+		if ($initBody) {
+			$this->body = new DocumentBody($this);
+			$this->AddControl($this->body);			
+		}
 	}
 
 	public function setKeywords($value) {
