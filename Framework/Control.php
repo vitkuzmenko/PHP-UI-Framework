@@ -118,6 +118,12 @@ class Control extends ComponentController {
 	
 	public function removeClass($class) {
 	
+		if (is_array($class)) {
+			$this->removeClassWithArray($class);
+			
+			return;
+		}
+	
 		if ($this->hasClass($class) == false) {
 			return;
 		}
@@ -131,8 +137,14 @@ class Control extends ComponentController {
 		return $this;
 	}
 	
+	public function removeClassWithArray(array $array = array()) {
+		foreach ($array as $item) {
+			$this->removeClass($item);
+		}
+	}
+	
 	public function hasClass($class) {
-		if ($this->attrController->hasAttr()) {
+		if ($this->attrController->hasAttr('class')) {
 			$currentClass = $this->attrController->attrValue('class');
 		} else {
 			$currentClass = '';

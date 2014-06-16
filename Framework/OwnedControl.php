@@ -97,7 +97,7 @@ class OwnedControl extends Control {
 			return null;
 		}
 		
-		$content = $this->getOpenTag().$this->content;
+		$content = $this->getOpenTag();
 		
 		foreach ($this->controls as $ctrl) {
 			$ctrl->tabSpaceLevel = $ctrl->parentControl->tabSpaceLevel() . $this->tabSpace();
@@ -107,7 +107,9 @@ class OwnedControl extends Control {
 		$complete = $content . $this->endContent;
 		
 		if ($this->hasChild()) {
-			$complete .= $this->offset() . $this->tabSpaceLevel();
+			$complete .= $this->content . $this->offset() . $this->tabSpaceLevel();
+		} else {
+			$complete .= $this->content;
 		}
 		
 		$complete .= $this->GetCloseTag();
