@@ -14,7 +14,7 @@ class Document extends \PHPUIF\Document {
 	
 	public function __construct($title = null, $charset = 'utf-8', $lang = null) {
 	
-		parent::__construct($title, $charset, $lang);
+		parent::__construct($title, $charset, $lang, false);
 
 		$this->head->addCssFile('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
 		
