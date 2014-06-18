@@ -9,3 +9,4 @@ require_once BOOSTRAP_PATH . '/DocumentBody.php';
 require_once BOOSTRAP_PATH . '/Document.php';
 require_once BOOSTRAP_PATH . '/Form.php';
 require_once BOOSTRAP_PATH . '/FormGroup.php';
+require_once BOOSTRAP_PATH . '/Button.php';

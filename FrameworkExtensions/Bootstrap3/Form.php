@@ -277,5 +277,12 @@ class Form extends \PHPUIF\Form {
 		}
 		return $this->addBlock($tag, 'help-block', null, $text);
 	}
+	
+	public function addButton($title, $name = null, $style = 'default') {
+		$ctrl = new Button($this, $title, $name, $style);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+
 
 }
