@@ -20,7 +20,7 @@ class BlockControl extends OwnedControl {
 	
 	public function addContent($content = null) {
 		$ctrl = new BlockControl($this, null);
-		$ctrl->clear = true;
+		$ctrl->clean = true;
 		$ctrl->setContent($content);
 		$this->addControl($ctrl);
 		return $ctrl;		
