@@ -89,6 +89,7 @@ class Button extends BlockControl {
 		if ($class) {
 			$this->addClass(sprintf('btn-%s', $class));
 		}
+		return $this;
 	}
 	
 	/**
@@ -101,22 +102,23 @@ class Button extends BlockControl {
 	 */
 	public function setSize($size = null) {
 		$this->size = $size;
+		return $this;
 	}
 	
 	public function setLgSize() {
-		$this->setSize('lg');
+		return $this->setSize('lg');
 	}
 	
 	public function setSmSize() {
-		$this->setSize('sm');
+		return $this->setSize('sm');
 	}
 	
 	public function setDefaultSize() {
-		$this->setSize();
+		return $this->setSize();
 	}
 	
 	public function setXsSize() {
-		$this->setSize('xs');
+		return $this->setSize('xs');
 	}
 	
 	// !Button Type
@@ -170,6 +172,7 @@ class Button extends BlockControl {
 	 */
 	public function showCaret($bool = true) {
 		$this->showCaret = $bool;
+		return $this;
 	}
 	
 	/**
@@ -182,6 +185,7 @@ class Button extends BlockControl {
 	 */
 	public function setBlock($bool = true) {
 		$this->block = $bool;
+		return $this;
 	}
 	
 	/**
@@ -193,6 +197,7 @@ class Button extends BlockControl {
 	 */
 	public function setActive($bool = true) {
 		$this->active = $bool;
+		return $this;
 	}
 	
 	public function getComplete() {

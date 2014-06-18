@@ -48,10 +48,33 @@ class Dropdown extends BlockControl {
 	 */
 	public $inGroup = false;
 	
+	/**
+	 * dropUp
+	 * Trigger dropdown menus above elements by adding .dropup to the parent.
+	 * 
+	 * (default value: false)
+	 * 
+	 * @var bool
+	 * @access public
+	 */
+	public $dropUp = false;
+	
 	public function __construct($parent, $inGroup = false) {
 		parent::__construct($parent, 'div');
 		$this->inGroup = $inGroup;		
 		$this->initMenu();
+	}
+	
+	/**
+	 * setDropUp function.
+	 * Trigger dropdown menus above elements
+	 * 
+	 * @access public
+	 * @param bool $bool (default: true)
+	 * @return void
+	 */
+	public function setDropUp($bool = true) {
+		$this->dropUp = $bool;
 	}
 	
 	/**
@@ -78,14 +101,47 @@ class Dropdown extends BlockControl {
 		return $button;
 	}
 	
+	/**
+	 * showCaret function.
+	 * Shows caret in button
+	 * 
+	 * @access public
+	 * @param bool $bool (default: true)
+	 * @return void
+	 */
 	public function showCaret($bool = true) {
 		$this->showCaret = $bool;
 	}
 	
+	/**
+	 * removeCaret function.
+	 * Remove added caret from button
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function removeCaret() {
 		$this->showCaret = false;
 	}
 	
+	/**
+	 * pullRight function.
+	 * Position of Dropdownmenu
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function pullRight() {
+		$this->menu->pullRight();
+	}
+	
+	/**
+	 * initMenu function.
+	 * Menu initialization
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function initMenu() {
 		$this->menu = new DropdownMenu($this);
 		return $this->menu;
@@ -93,24 +149,59 @@ class Dropdown extends BlockControl {
 	
 	// !Items
 	
+	/**
+	 * addItem function.
+	 * Adding item to dropdownmenu
+	 * 
+	 * @access public
+	 * @param mixed $title (default: null)
+	 * @param mixed $href (default: null)
+	 * @param bool $active (default: false)
+	 * @param bool $disabled (default: false)
+	 * @param bool $header (default: false)
+	 * @return void
+	 */
 	public function addItem($title = null, $href = null, $active = false, $disabled = false, $header = false) {
 		return $this->menu->addItem($title, $href, $active, $disabled, $header);
 	}
 	
+	/**
+	 * addHeaderItem function.
+	 * 
+	 * @access public
+	 * @param mixed $title
+	 * @return void
+	 */
 	public function addHeaderItem($title) {
 		return $this->menu->addHeaderItem($title);
 	}
 
+	/**
+	 * addDivider function.
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function addDivider() {
 		return $this->menu->addDivider();
 	}
 	
+	/**
+	 * getComplete function.
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function getComplete() {
 		
 		if ($this->inGroup) {
 			$this->setClass('btn-group');
 		} else {
 			$this->setClass('dropdown');
+		}
+		
+		if ($this->dropUp) {
+			$this->addClass('dropup');
 		}
 		
 		if ($this->button) {

@@ -17,6 +17,10 @@ class DropdownMenu extends \PHPUIF\ListControl {
 		
 		$this->addClass('dropdown-menu');
 	}
+	
+	public function pullRight() {
+		$this->addClass('dropdown-menu-right');
+	}
 
 	public function addItem($title = null, $href = null, $active = false, $disabled = false, $header = false) {
 		$ctrl = new MenuItem($this, $title, $href, $active, $disabled, $header);
