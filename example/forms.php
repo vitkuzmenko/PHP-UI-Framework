@@ -12,10 +12,10 @@ class index extends \Bootstrap\Document {
 		$form = $body->addForm(1, 'myForm', '/');
 
 		$form->setFormInline(true, false);
-		$form->setFormHorizontal();
+// 		$form->setFormHorizontal();
 		$form->setHorizontalLabelOffset(2);
 		
-		$form->addFormGroupWithLabelTextFieldAndHelpBlock('myGroup', 'My Field', 'Placeholder', null, 'Help Block');
+		$form->addFormGroupWithLabelAndTextField('myGroup', 'My Field', 'Placeholder', null);
 		
 		$successGroup = $form->addFormGroupWithLabelAndTextField('myGroup', 'My Field', 'Placeholder');
 		$successGroup->setSuccessState(true);

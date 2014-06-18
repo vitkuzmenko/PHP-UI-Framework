@@ -9,8 +9,28 @@ class index extends \Bootstrap\Document {
 	
 		$body = $this->body;
 		
-		$dropdown = new \Bootstrap\Dropdown($body);
-		$dropdown->initButton('hello');
+/*
+		$dropdown = $body->addDropdown();
+		$dropdown->cofigureButton('hello');
+		
+		$dropdown->addHeaderItem('Header');
+		$dropdown->addItem('First Item', '#');
+		$dropdown->addItem('Second Item', '#', true);
+		$dropdown->addDivider();
+		$dropdown->addItem('Third Item', '#', false, true);
+*/
+		
+		$group = $body->addButtonGroup();
+/* 		$group->setXsSize(); */
+// 		$group->setVertical();
+// 		$group->setJustified();
+		$group->addButton('First Button');
+		$group->addButton('Second Button');
+		$group->addButton('Third Button');
+
+		$dropdown = $group->addDropdown();
+/* 		$dropdown->pullRight(); */
+		$dropdown->cofigureButton('hello');
 		
 		$dropdown->addHeaderItem('Header');
 		$dropdown->addItem('First Item', '#');
@@ -18,7 +38,7 @@ class index extends \Bootstrap\Document {
 		$dropdown->addDivider();
 		$dropdown->addItem('Third Item', '#', false, true);
 		
-		$body->addControl($dropdown);
+		
 	}
 	
 }
