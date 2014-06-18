@@ -35,5 +35,11 @@ class BlockControl extends \PHPUIF\BlockControl {
 		$ctrl->addClass('close');
 		return $ctrl;
 	}
+	
+	public function addDropdown() {
+		$ctrl = new \Bootstrap\Dropdown($this);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
 
 }

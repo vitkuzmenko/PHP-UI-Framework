@@ -25,7 +25,7 @@ class Dropdown extends BlockControl {
 		$this->initMenu();
 	}
 	
-	public function initButton($title = null, $id = null, $style = 'default', $size = null) {
+	public function cofigureButton($title = null, $id = null, $style = 'default', $size = null) {
 		$this->button = new Button($this, $title, $id, $style, $size);
 		$this->button->setAttr('data-toggle', 'dropdown');
 		return $this->button;
