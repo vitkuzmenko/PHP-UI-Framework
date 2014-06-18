@@ -225,6 +225,10 @@ class Control extends ComponentController {
 	}
 	
 	public function getCloseTag() {
+		if ($this->clean) {
+			return null;
+		}
+	
 		if ($this->hasClose == false) {
 			return null;
 		}
