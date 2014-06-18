@@ -77,17 +77,9 @@ class BlockControl extends OwnedControl {
 	}
 	
 	public function addImage($src, $alt = null, array $size = array()) {
-		
-		$ctrl = $this->addBlock('img');
-		$ctrl->hasClose = false;
-		$ctrl->setAttr('src', $src);
-		$ctrl->setAttr('alt', $alt);
-		
-		if (is_array($size) && count($size) == 2) {
-			$ctrl->setAttr('width', $size[0]);
-			$ctrl->setAttr('height', $size[1]);
-		}
-
+		$ctrl = new Image($this, $src, $alt);
+		$ctrl->setSize($size[0], $size[1]);
+		$this->addControl($ctrl);
 		return $ctrl;
 	}
 
