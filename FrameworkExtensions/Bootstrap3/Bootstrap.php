@@ -16,4 +16,5 @@ require_once BOOSTRAP_PATH . '/Dropdown.php';
 require_once BOOSTRAP_PATH . '/MenuItem.php';
 require_once BOOSTRAP_PATH . '/InputGroup.php';
 require_once BOOSTRAP_PATH . '/Nav.php';
+require_once BOOSTRAP_PATH . '/Alert.php';
 

@@ -54,4 +54,10 @@ class BlockControl extends \PHPUIF\BlockControl {
 		return $ctrl;
 	}
 	
+	public function addAlert($content, $style = 'warning', $dismissable = false) {
+		$ctrl = new Alert($this, $content, $style, $dismissable);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+	
 }
