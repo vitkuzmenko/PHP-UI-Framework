@@ -24,6 +24,6 @@ class LinkControl extends BlockControl {
 	}
 
 	public function setLinkTitle($value = null) {
-		$this->setContent($value);
+		$this->addContent($value);
 	}
 }
