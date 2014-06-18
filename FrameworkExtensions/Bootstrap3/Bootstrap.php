@@ -10,3 +10,7 @@ require_once BOOSTRAP_PATH . '/Document.php';
 require_once BOOSTRAP_PATH . '/Form.php';
 require_once BOOSTRAP_PATH . '/FormGroup.php';
 require_once BOOSTRAP_PATH . '/Button.php';
+require_once BOOSTRAP_PATH . '/DropdownMenu.php';
+require_once BOOSTRAP_PATH . '/Dropdown.php';
+require_once BOOSTRAP_PATH . '/MenuItem.php';
+

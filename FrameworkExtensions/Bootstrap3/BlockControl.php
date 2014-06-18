@@ -24,8 +24,8 @@ class BlockControl extends \PHPUIF\BlockControl {
 		return $ctrl;
 	}
 	
-	public function addButton($title, $name = null, $style = 'default') {
-		$ctrl = new Button($this, $title, $name, $style);
+	public function addButton($title, $id = null, $style = 'default') {
+		$ctrl = new Button($this, $title, $id, $style);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}

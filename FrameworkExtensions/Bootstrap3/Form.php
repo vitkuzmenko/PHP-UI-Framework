@@ -40,10 +40,6 @@ class Form extends \PHPUIF\Form {
 	
 	public function __construct($parent, $method, $name, $action = null, $nameAsId = true) {
 		parent::__construct($parent, $method, $name, $action, $nameAsId);
-		
-		if ($method != 4) {
-			$this->setAttr('role', 'form');
-		}
 	}
 	
 	public function setFormInline($formInline = true, $hideLabels = false) {

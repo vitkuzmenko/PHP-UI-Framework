@@ -50,10 +50,10 @@ class Button extends BlockControl {
 	 */
 	public $active = false;
 	
-	function __construct($parent, $title = null, $name = null, $style = 'default', $size = null) {
+	function __construct($parent, $title = null, $id = null, $style = 'default', $size = null) {
 		parent::__construct($parent, 'button');
 		
-		
+		$this->setId($id);
 		$this->setAttr('type', 'button');
 		$this->setClass('btn');
 		
