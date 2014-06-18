@@ -26,6 +26,8 @@ class MenuItem extends BlockControl {
 	
 	public $menu;
 	
+	protected $badge;
+	
 	public function __construct($parent, $title = null, $href = null, $active = false, $disabled = false, $header = false) {
 		parent::__construct($parent, 'li');
 		
@@ -43,6 +45,11 @@ class MenuItem extends BlockControl {
 	
 	public function setHref($href = null) {
 		$this->href = $href;
+	}
+	
+	public function setBadge($value = null) {
+		$this->badge = $value;
+		return $this;
 	}
 	
 	private function initLink($href = null, $title = null) {
@@ -117,6 +124,10 @@ class MenuItem extends BlockControl {
 			$this->link->setAttr('data-toggle', 'dropdown');
 			$this->link->addSpan('caret');
 			$this->addControl($this->menu);
+		}
+
+		if ($this->badge) {
+			$this->link->addSpan('badge pull-right', null, $this->badge);
 		}
 		
 		if ($this->disabled) {
