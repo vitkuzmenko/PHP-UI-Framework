@@ -105,6 +105,16 @@ class Form extends \PHPUIF\Form {
 		return $ctrl;
 	}
 
+	// !InputGroup
+	
+	public function addInputGroup() {
+		$ctrl = new InputGroup($this);
+		//$ctrl->nameAsId = $this->nameAsId;
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+
+
 	// !Form Groups
 	
 	public function addFormGroup() {

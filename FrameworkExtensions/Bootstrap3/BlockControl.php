@@ -47,5 +47,5 @@ class BlockControl extends \PHPUIF\BlockControl {
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
-
+	
 }
