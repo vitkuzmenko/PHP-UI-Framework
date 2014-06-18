@@ -8,7 +8,13 @@ class index extends \Bootstrap\Document {
 		parent::__construct('hello', 'utf-8', 'en');
 	
 		$body = $this->body;
+
+		$array = array(1,2,3,4 => array(2,3,4 => array(3,4,5,6),5),5,6,7);
+
+		$list = $body->addList('ul');
+		$list->addItems($array);
 		
+/*
 		$form = $body->addForm(1, 'myForm', '/');
 
 		$form->setFormInline(true, false);
@@ -33,6 +39,7 @@ class index extends \Bootstrap\Document {
 		$form->addFormGroupWithRadioButton('myRadioButton', 'My Radio Button');
 		$form->addFormGroupWithRadioButton('myRadioButton', 'My Radio Button', null, true);
 		$form->addFormGroupWithRadioButton('myRadioButton', 'My Radio Button');
+*/
 	}
 	
 }
