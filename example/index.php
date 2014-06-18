@@ -9,6 +9,8 @@ class index extends \Bootstrap\Document {
 	
 		$body = $this->body;
 
+		$alert = $body->addAlert('hello', 'warning', true);
+		$alert->addLink('hello', 'hello');
 
 		$nav = $body->addNav();
 		$nav->setTabsStyle();
@@ -18,7 +20,8 @@ class index extends \Bootstrap\Document {
 		$nav->addItem('Third Item', '#', false, true);
 		$dropdown = $nav->addDropdown('Dropdown', '#');
 		$dropdown->addHeaderItem('Header');
-		$dropdown->addItem('First Item', '#');
+		$item = $dropdown->addItem('First Item', '#');
+		$item->setBadge(5);
 		$dropdown->addItem('Second Item', '#', true);
 		$dropdown->addDivider();
 		$dropdown->addItem('Third Item', '#', false, true);
