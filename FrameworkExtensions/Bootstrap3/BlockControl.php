@@ -29,5 +29,11 @@ class BlockControl extends \PHPUIF\BlockControl {
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
+	
+	public function addCloseButton($id = null) {
+		$ctrl = parent::addButton('&times;', $id);
+		$ctrl->addClass('close');
+		return $ctrl;
+	}
 
 }
