@@ -36,6 +36,7 @@ class index extends \Bootstrap\Document {
 		
 		$button = $form->addButton('My Button', 'myButton', 'info');
 		$button->setDangerStyle();
+		
 	}
 	
 }
