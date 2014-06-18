@@ -50,6 +50,16 @@ class Button extends BlockControl {
 	 */
 	public $active = false;
 	
+	/**
+	 * showCaret
+	 * 
+	 * (default value: false)
+	 * 
+	 * @var bool
+	 * @access public
+	 */
+	public $showCaret = false;
+	
 	function __construct($parent, $title = null, $id = null, $style = 'default', $size = null) {
 		parent::__construct($parent, 'button');
 		
@@ -153,6 +163,16 @@ class Button extends BlockControl {
 	}
 	
 	/**
+	 * addCaret function.
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function showCaret($bool = true) {
+		$this->showCaret = $bool;
+	}
+	
+	/**
 	 * setBlock function.
 	 * Create block level buttons—those that span the full width of a parent by adding .btn-block.
 	 * 
@@ -176,9 +196,13 @@ class Button extends BlockControl {
 	}
 	
 	public function getComplete() {
-		$this->setContent($this->title);
+		$this->addContent($this->title);
 		$this->addBtnClass($this->size);		
 		$this->addBtnClass($this->style);
+		
+		if ($this->showCaret) {
+			$this->addSpan('caret');
+		}
 		
 		if ($this->block) {
 			$this->addBtnClass('block');

@@ -12,27 +12,78 @@ namespace Bootstrap;
 
 class Dropdown extends BlockControl {
 	
+	/**
+	 * button - Contains Button Object
+	 * 
+	 * @var mixed
+	 * @access public
+	 */
 	public $button;
 	
-	public $addCaret = true;
+	/**
+	 * showCaret - Add caret to button or no
+	 * 
+	 * (default value: true)
+	 * 
+	 * @var bool
+	 * @access public
+	 */
+	public $showCaret = true;
 	
+	/**
+	 * menu - Contains DropdownMenu Object
+	 * 
+	 * @var mixed
+	 * @access public
+	 */
 	public $menu;
 	
-	public function __construct($parent) {
+	/**
+	 * inGroup - add to btn-group or no
+	 * 
+	 * (default value: false)
+	 * 
+	 * @var bool
+	 * @access public
+	 */
+	public $inGroup = false;
+	
+	public function __construct($parent, $inGroup = false) {
 		parent::__construct($parent, 'div');
-		
-		$this->setClass('dropdown');
+		$this->inGroup = $inGroup;		
 		$this->initMenu();
 	}
 	
+	/**
+	 * cofigureButton function.
+	 * Configure Button Object
+	 * 
+	 * @access public
+	 * @param mixed $title (default: null)
+	 * @param mixed $id (default: null)
+	 * @param string $style (default: 'default')
+	 * @param mixed $size (default: null)
+	 * @return void
+	 */
 	public function cofigureButton($title = null, $id = null, $style = 'default', $size = null) {
-		$this->button = new Button($this, $title, $id, $style, $size);
-		$this->button->setAttr('data-toggle', 'dropdown');
-		return $this->button;
+		$button = new Button($this, $title, $id, $style, $size);
+		$button->setAttr('data-toggle', 'dropdown');
+		
+		if ($this->inGroup) {
+			$button->addClass('dropdown-toggle');
+		}
+		
+		$this->button = $button;
+		
+		return $button;
 	}
 	
-	public function addCaret($bool = true) {
-		$this->addCaret = $bool;
+	public function showCaret($bool = true) {
+		$this->showCaret = $bool;
+	}
+	
+	public function removeCaret() {
+		$this->showCaret = false;
 	}
 	
 	public function initMenu() {
@@ -56,8 +107,15 @@ class Dropdown extends BlockControl {
 	
 	public function getComplete() {
 		
+		if ($this->inGroup) {
+			$this->setClass('btn-group');
+		} else {
+			$this->setClass('dropdown');
+		}
+		
 		if ($this->button) {
 			$this->addControl($this->button);
+			$this->button->showCaret($this->showCaret);
 		}
 		
 		if ($this->menu) {

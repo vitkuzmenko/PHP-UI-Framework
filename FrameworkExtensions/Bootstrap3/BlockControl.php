@@ -30,14 +30,20 @@ class BlockControl extends \PHPUIF\BlockControl {
 		return $ctrl;
 	}
 	
+	public function addButtonGroup() {
+		$ctrl = new ButtonGroup($this);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+	
 	public function addCloseButton($id = null) {
 		$ctrl = parent::addButton('&times;', $id);
 		$ctrl->addClass('close');
 		return $ctrl;
 	}
 	
-	public function addDropdown() {
-		$ctrl = new \Bootstrap\Dropdown($this);
+	public function addDropdown($inGroup = false) {
+		$ctrl = new \Bootstrap\Dropdown($this, $inGroup);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
