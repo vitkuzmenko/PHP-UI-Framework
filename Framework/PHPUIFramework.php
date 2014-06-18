@@ -9,6 +9,7 @@ require_once PHPUIF_PATH . '/OwnedControl.php';
 require_once PHPUIF_PATH . '/AttrController.php';
 require_once PHPUIF_PATH . '/BlockControl.php';
 require_once PHPUIF_PATH . '/Image.php';
+require_once PHPUIF_PATH . '/LinkControl.php';
 require_once PHPUIF_PATH . '/Document.php';
 require_once PHPUIF_PATH . '/DocumentBody.php';
 require_once PHPUIF_PATH . '/DocumentHead.php';

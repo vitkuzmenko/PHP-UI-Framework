@@ -12,7 +12,7 @@ namespace PHPUIF;
 
 require_once realpath(dirname(__FILE__)) . '/PHPUIFramework.php';
 
-class ListControl extends OwnedControl {
+class ListControl extends BlockControl {
 	
 	/**
 	 * itemTag - li or dt
@@ -39,7 +39,7 @@ class ListControl extends OwnedControl {
 	protected $listItemType;
 	
 	public function __construct($parent, $type = 'ul') {
-		parent::__construct($parent);
+		parent::__construct($parent, $type);
 		$this->setType($type);
 	}
 	
@@ -117,20 +117,6 @@ class ListControl extends OwnedControl {
 				$this->addItem($row);
 			}
 		}
-	}
-	
-	/**
-	 * addList function.
-	 * Add list to list item
-	 * 
-	 * @access public
-	 * @param mixed $type
-	 * @return void
-	 */
-	public function addList($type) {
-		$ctrl = new ListControl($this, $type);
-		$this->AddControl($ctrl);
-		return $ctrl;
 	}
 	
 }

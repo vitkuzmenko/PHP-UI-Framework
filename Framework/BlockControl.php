@@ -64,15 +64,8 @@ class BlockControl extends OwnedControl {
 	}
 	
 	public function addLink($href, $title = null, $class = null, $hint = null) {
-	
-		if ($title == null) {
-			$title = $href;
-		}
-		
-		$ctrl = $this->addBlock('a', $class, null, $title);
-		$ctrl->setAttr('href', $href);
-		$ctrl->setAttr('title', $hint);
-		
+		$ctrl = new LinkControl($this, $href, $title);
+		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	

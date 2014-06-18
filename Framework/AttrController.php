@@ -37,7 +37,7 @@ class AttrController extends ObjectController {
 	 * @return string
 	 */
 	private function safeAttrValue($value) {
-		return str_replace('"', '&quot;', $value);
+		return trim(str_replace('"', '&quot;', $value));
 	}
 	
 	/**

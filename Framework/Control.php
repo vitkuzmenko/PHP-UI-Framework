@@ -169,6 +169,11 @@ class Control extends ComponentController {
 		return $this;
 	}
 	
+	public function setRole($value) {
+		$this->setAttr('role');
+		return $this;
+	}
+	
 	public function setStyle($value) {
 		$this->setAttr('style', $value);
 		return $this;
