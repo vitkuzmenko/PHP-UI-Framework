@@ -48,4 +48,10 @@ class BlockControl extends \PHPUIF\BlockControl {
 		return $ctrl;
 	}
 	
+	public function addNav($style = 'pills') {
+		$ctrl = new Nav($this, $style);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+	
 }

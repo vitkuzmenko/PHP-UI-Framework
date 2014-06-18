@@ -24,6 +24,8 @@ class MenuItem extends BlockControl {
 	
 	public $link;
 	
+	public $menu;
+	
 	public function __construct($parent, $title = null, $href = null, $active = false, $disabled = false, $header = false) {
 		parent::__construct($parent, 'li');
 		
@@ -59,10 +61,63 @@ class MenuItem extends BlockControl {
 	public function setActive($bool = true) {
 		$this->active = $bool;
 	}
+	
+	// !Dropdown
+	
+	public function addDropdown($inGroup = false) {
+		$this->menu = new DropdownMenu($this);
+		return $this->menu;
+	}
+	
+	/**
+	 * addItem function.
+	 * Adding item to dropdownmenu
+	 * 
+	 * @access public
+	 * @param mixed $title (default: null)
+	 * @param mixed $href (default: null)
+	 * @param bool $active (default: false)
+	 * @param bool $disabled (default: false)
+	 * @param bool $header (default: false)
+	 * @return void
+	 */
+	public function addItem($title = null, $href = null, $active = false, $disabled = false, $header = false) {
+		return $this->menu->addItem($title, $href, $active, $disabled, $header);
+	}
+	
+	/**
+	 * addHeaderItem function.
+	 * 
+	 * @access public
+	 * @param mixed $title
+	 * @return void
+	 */
+	public function addHeaderItem($title) {
+		return $this->menu->addHeaderItem($title);
+	}
+
+	/**
+	 * addDivider function.
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function addDivider() {
+		return $this->menu->addDivider();
+	}
+
 
 	private function setLinkAttributes() {
 		$link = $this->initLink($this->href, $this->title);
 		$this->addControl($link);
+		
+		if ($this->menu) {
+			$this->addClass('dropdown');
+			$this->link->addClass('dropdown-toggle');
+			$this->link->setAttr('data-toggle', 'dropdown');
+			$this->link->addSpan('caret');
+			$this->addControl($this->menu);
+		}
 		
 		if ($this->disabled) {
 			$this->addClass('disabled');

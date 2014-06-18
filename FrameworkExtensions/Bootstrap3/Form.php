@@ -109,7 +109,7 @@ class Form extends \PHPUIF\Form {
 	
 	public function addInputGroup() {
 		$ctrl = new InputGroup($this);
-		//$ctrl->nameAsId = $this->nameAsId;
+		$ctrl->nameAsId = $this->nameAsId;
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
