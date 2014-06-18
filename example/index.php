@@ -10,6 +10,20 @@ class index extends \Bootstrap\Document {
 		$body = $this->body;
 
 
+		$nav = $body->addNav();
+		$nav->setTabsStyle();
+// 		$nav->setJustified();
+		$nav->addItem('First Item', '#');
+		$nav->addItem('Second Item', '#', true);
+		$nav->addItem('Third Item', '#', false, true);
+		$dropdown = $nav->addDropdown('Dropdown', '#');
+		$dropdown->addHeaderItem('Header');
+		$dropdown->addItem('First Item', '#');
+		$dropdown->addItem('Second Item', '#', true);
+		$dropdown->addDivider();
+		$dropdown->addItem('Third Item', '#', false, true);
+		
+
 		$form = $body->addForm(3, 'myForm');
 		$inputGroup = $form->addInputGroup();
 		$inputGroup->addLeftAddonWithCheckBox('hello', false);
