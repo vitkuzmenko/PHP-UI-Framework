@@ -211,7 +211,7 @@ class Control extends ComponentController {
 	}
 	
 	public function getOpenTag() {
-		if ($this->clean) {
+		if ($this->clean || is_null($this->tag)) {
 			return null;
 		}
 		
@@ -225,7 +225,7 @@ class Control extends ComponentController {
 	}
 	
 	public function getCloseTag() {
-		if ($this->clean) {
+		if ($this->clean || is_null($this->tag)) {
 			return null;
 		}
 	

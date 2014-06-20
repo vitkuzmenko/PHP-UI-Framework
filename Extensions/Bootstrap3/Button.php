@@ -60,17 +60,23 @@ class Button extends BlockControl {
 	 */
 	public $showCaret = false;
 	
+	public $submit = false;
+	
 	function __construct($parent, $title = null, $id = null, $style = 'default', $size = null) {
 		parent::__construct($parent, 'button');
 		
 		$this->setId($id);
-		$this->setAttr('type', 'button');
 		$this->setClass('btn');
 		
 		$this->setButtonStyle($style);
 		$this->setSize($size);
 		
 		$this->setButtonTitle($title);
+	}
+	
+	public function setSubmit($bool = true) {
+		$this->submit = $bool;
+		return $this;
 	}
 	
 	public function setButtonTitle($value = null) {
@@ -204,6 +210,12 @@ class Button extends BlockControl {
 		$this->addContent($this->title);
 		$this->addBtnClass($this->size);		
 		$this->addBtnClass($this->style);
+		
+		if ($this->submit) {
+			$this->setAttr('type', 'submit');
+		} else {
+			$this->setAttr('type', 'button');
+		}
 		
 		if ($this->showCaret) {
 			$this->addSpan('caret');

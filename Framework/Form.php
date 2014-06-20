@@ -109,12 +109,14 @@ class Form extends BlockControl {
 	
 	public function addNumberField($name = null, $placeholder = null, $value = null) {
 		$ctrl = $this->addInput('number', $name);
+		$ctrl->setPlaceholder($placeholder);
 		$ctrl->setAttr('value', $value);
 		return $ctrl;
 	}
 	
 	public function addPasswordField($name = null, $placeholder = null, $value = null) {
 		$ctrl = $this->addInput('password', $name);
+		$ctrl->setPlaceholder($placeholder);
 		$ctrl->setAttr('value', $value);
 		return $ctrl;
 	}

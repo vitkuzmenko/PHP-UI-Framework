@@ -18,6 +18,32 @@ class BlockControl extends \PHPUIF\BlockControl {
 		parent::__construct($parent, $tag);
 	}
 
+	public function addBlock($tag = null, $class = null, $id = null, $content = null) {
+		$ctrl = new BlockControl($this, $tag);
+		
+		if ($tag == null) {
+			$ctrl->clear = true;
+		}
+		
+		$ctrl->setClass($class);
+		$ctrl->setId($id);
+		$ctrl->setContent($content);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+	
+	public function addDiv($class = null, $id = null, $content = null) {
+		return $this->addBlock('div', $class, $id, $content);
+	}
+
+	public function addSpan($class = null, $id = null, $content = null) {
+		return $this->addBlock('span', $class, $id, $content);
+	}
+	
+	public function addSection($class = null, $id = null, $content = null) {
+		return $this->addBlock('section', $class, $id, $content);
+	}
+
 	public function addForm($method, $name, $action = null, $nameAsId = true) {
 		$ctrl = new Form($this, $method, $name, $action, $nameAsId);
 		$this->addControl($ctrl);
@@ -59,5 +85,7 @@ class BlockControl extends \PHPUIF\BlockControl {
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
+	
+	
 	
 }

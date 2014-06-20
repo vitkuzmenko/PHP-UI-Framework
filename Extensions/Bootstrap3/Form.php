@@ -88,7 +88,7 @@ class Form extends \PHPUIF\Form {
 	}
 	
 	public function addPasswordField($name = null, $placeholder = null, $value = null) {
-		$ctrl = parent::addPasswordField($name = null, $placeholder = null, $value = null);
+		$ctrl = parent::addPasswordField($name, $placeholder, $value);
 		$ctrl->setClass('form-control');
 		return $ctrl;
 	}
@@ -125,8 +125,10 @@ class Form extends \PHPUIF\Form {
 	
 	public function addEmptyFormGroup($name, $label = null) {
 		$formGroup = $this->addFormGroup();
+		
 		$formGroup->label = $formGroup->addLabel($name, $label);
-		$formGroup->label->addClass('control-label');
+		$formGroup->label->addClass('control-label');							
+		
 		$formGroup->formHorizontal = $this->formHorizontal;
 		$formGroup->formInline = $this->formInline;
 		$formGroup->hideLabels = $this->hideLabels;
@@ -138,7 +140,7 @@ class Form extends \PHPUIF\Form {
 			$controlParent = $formGroup;
 		}
 		
-		if ($this->hideLabels) {
+		if ($this->hideLabels || is_null($label)) {
 			$formGroup->label->addClass('sr-only');
 		}
 		
@@ -163,6 +165,12 @@ class Form extends \PHPUIF\Form {
 		}
 		
 		$formGroup->helpBlock = $parentForHelpBlock->addHelpBlock($help);
+		return $formGroup;
+	}
+	
+	public function addFormGroupWithLabelAndPasswordField($name, $label = null, $placeholder = null, $value = null) {
+		$formGroup = $this->addEmptyFormGroup($name, $label);
+		$formGroup->textField = $formGroup->controlParent->addPasswordField($name, $placeholder, $value);
 		return $formGroup;
 	}
 	
