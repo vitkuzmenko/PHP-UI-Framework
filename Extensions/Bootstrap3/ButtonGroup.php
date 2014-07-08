@@ -43,8 +43,8 @@ class ButtonGroup extends BlockControl {
 	 */
 	public $justified = false;
 	
-	public function __construct($parent) {
-		parent::__construct($parent, 'div');
+	public function __construct() {
+		parent::__construct('div');
 		$this->setClass('btn-group');
 	}
 

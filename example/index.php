@@ -1,6 +1,6 @@
 <?php
 
-require_once '../FrameworkExtensions/Bootstrap3/Bootstrap.php';
+require_once '../Extensions/Bootstrap3/Bootstrap.php';
 
 class index extends \Bootstrap\Document {
 	

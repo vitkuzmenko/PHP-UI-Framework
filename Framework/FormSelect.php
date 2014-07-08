@@ -22,8 +22,8 @@ class FormSelect extends FormControl {
 	 */
 	protected $size;
 		
-	public function __construct($parent, $name = "") {
-		parent::__construct($parent, $name);
+	public function __construct($name = "") {
+		parent::__construct($name);
 		
 		$this->tag      = 'select';
 		$this->size     = 0;
@@ -68,7 +68,7 @@ class FormSelect extends FormControl {
 	 */
 	public function addItem($value, $text = null) {
 	
-		$ctrl = new BlockControl($this, 'option');
+		$ctrl = new BlockControl('option');
 		
 		if (is_null($text)) {
 			$ctrl->setContent($value);
@@ -119,9 +119,13 @@ class FormSelect extends FormControl {
 	 */
 	public function setSelected($selectValue, $checkText = false) {
 	
+		$checkTextDefault = $checkText;
+	
 		foreach ($this->controls as $ctrl) {
 
-			if ($ctrl->hasAttr('value') == false) {
+			$hasValue = $ctrl->hasAttr('value');
+			
+			if (!$hasValue) {
 				$checkText = true;
 			}
 			
@@ -134,6 +138,8 @@ class FormSelect extends FormControl {
 			if ($value == $selectValue) {
 				$ctrl->setAttr('selected', 'selected');
 			}
+			
+			$checkText = $checkTextDefault;
 		}		
 	}
 

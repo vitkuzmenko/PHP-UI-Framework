@@ -59,8 +59,8 @@ class Dropdown extends BlockControl {
 	 */
 	public $dropUp = false;
 	
-	public function __construct($parent, $inGroup = false) {
-		parent::__construct($parent, 'div');
+	public function __construct($inGroup = false) {
+		parent::__construct('div');
 		$this->inGroup = $inGroup;		
 		$this->initMenu();
 	}
@@ -89,7 +89,7 @@ class Dropdown extends BlockControl {
 	 * @return void
 	 */
 	public function cofigureButton($title = null, $id = null, $style = 'default', $size = null) {
-		$button = new Button($this, $title, $id, $style, $size);
+		$button = new Button($title, $id, $style, $size);
 		$button->setAttr('data-toggle', 'dropdown');
 		
 		if ($this->inGroup) {

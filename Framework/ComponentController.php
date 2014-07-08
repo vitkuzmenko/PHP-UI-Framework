@@ -16,8 +16,8 @@ abstract class ComponentController extends ObjectController {
 	
 	protected $name; //control internal name (in TFormControl and it's descendants this = name attribute)
 	
-	public function __construct($parent) {
-		parent::__construct($parent);
+	public function __construct() {
+		parent::__construct();
 	}
 	
 	public function setName($name) {

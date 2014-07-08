@@ -24,8 +24,8 @@ class AttrController extends ObjectController {
 	 */
 	protected $attributes = array();
 	
-	public function __construct($parent) {
-		parent::__construct($parent);
+	public function __construct() {
+		parent::__construct();
 	}
 	
 	/**

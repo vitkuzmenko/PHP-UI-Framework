@@ -12,8 +12,14 @@ namespace PHPUIF;
 
 class LinkControl extends BlockControl {
 	
-	public function __construct($parent, $href = null, $title = null) {
-		parent::__construct($parent, 'a');
+	public $textInSpan;
+	
+	public $title;
+	
+	public $textSpan;
+
+	public function __construct($href = null, $title = null) {
+		parent::__construct('a');
 		
 		$this->setHref($href);
 		$this->setLinkTitle($title);
@@ -24,6 +30,35 @@ class LinkControl extends BlockControl {
 	}
 
 	public function setLinkTitle($value = null) {
-		$this->addContent($value);
+		$this->title = $value;
 	}
+	
+	public function textSpan() {
+		if ($this->textSpan) {
+			return $this->textSpan;
+		}
+		
+		$this->textInSpan = true;
+
+		$ctrl = new BlockControl('span');
+		$ctrl->addClass('text');
+		$ctrl->addContent($this->title);
+		
+		$this->textSpan = $ctrl;
+		
+		return $ctrl;
+	}
+	
+	public function getComplete() {
+	
+		if ($this->textInSpan) {
+			$this->addControl($this->textSpan());
+		} else {
+			$this->addContent($this->title);
+		}
+				
+		return parent::getComplete();
+	}
+	
+	
 }

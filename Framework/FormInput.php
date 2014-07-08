@@ -30,8 +30,8 @@ class FormInput extends FormControl {
 	 */
 	protected $tagType;     //e.g. text, submit, file
 	
-	public function __construct($parent = null, $type = null, $name = null) {
-		parent::__construct($parent, $name);
+	public function __construct($type = null, $name = null) {
+		parent::__construct($name);
 		
 		$this->tag      = 'input';
 		$this->tagType  = $type;

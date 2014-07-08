@@ -16,6 +16,7 @@ require_once PHPUIF_PATH . '/DocumentHead.php';
 require_once PHPUIF_PATH . '/Form.php';
 require_once PHPUIF_PATH . '/FormControl.php';
 require_once PHPUIF_PATH . '/FormInput.php';
+require_once PHPUIF_PATH . '/CheckBoxControl.php';
 require_once PHPUIF_PATH . '/FormSelect.php';
 require_once PHPUIF_PATH . '/FormTextArea.php';
 require_once PHPUIF_PATH . '/ListControl.php';

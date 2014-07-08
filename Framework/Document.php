@@ -32,11 +32,11 @@ class Document extends OwnedControl {
 		
 		$this->setAttr('lang', $lang);
 		
-		$this->head = new DocumentHead($this, $this->title, $charset);
+		$this->head = new DocumentHead($this->title, $charset);
 		$this->AddControl($this->head);
 		
 		if ($initBody) {
-			$this->body = new DocumentBody($this);
+			$this->body = new DocumentBody();
 			$this->AddControl($this->body);			
 		}
 	}
@@ -70,7 +70,7 @@ class Document extends OwnedControl {
 		}
 	}
 
-	public function setTitle($valeu) {
+	public function setTitle($value) {
 		$this->head->setTitle($value);
 	}
 	

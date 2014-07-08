@@ -14,12 +14,12 @@ require_once realpath(dirname(__FILE__)) . '/Bootstrap.php';
 
 class BlockControl extends \PHPUIF\BlockControl {
 	
-	public function __construct($parent = null, $tag = 'div') {
-		parent::__construct($parent, $tag);
+	public function __construct($tag = 'div') {
+		parent::__construct($tag);
 	}
 
 	public function addBlock($tag = null, $class = null, $id = null, $content = null) {
-		$ctrl = new BlockControl($this, $tag);
+		$ctrl = new BlockControl($tag);
 		
 		if ($tag == null) {
 			$ctrl->clear = true;
@@ -32,6 +32,10 @@ class BlockControl extends \PHPUIF\BlockControl {
 		return $ctrl;
 	}
 	
+	public function addP($class = null, $id = null, $content = null) {
+		return $this->addBlock('p', $class, $id, $content);
+	}
+
 	public function addDiv($class = null, $id = null, $content = null) {
 		return $this->addBlock('div', $class, $id, $content);
 	}
@@ -43,23 +47,31 @@ class BlockControl extends \PHPUIF\BlockControl {
 	public function addSection($class = null, $id = null, $content = null) {
 		return $this->addBlock('section', $class, $id, $content);
 	}
+	
+	public function addFa($icon) {
+		return $this->addSpan('fa fa-' . $icon);
+	}
 
 	public function addForm($method, $name, $action = null, $nameAsId = true) {
-		$ctrl = new Form($this, $method, $name, $action, $nameAsId);
+		$ctrl = new Form($method, $name, $action, $nameAsId);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	
 	public function addButton($title, $id = null, $style = 'default') {
-		$ctrl = new Button($this, $title, $id, $style);
+		$ctrl = new Button($title, $id, $style);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	
 	public function addButtonGroup() {
-		$ctrl = new ButtonGroup($this);
+		$ctrl = new ButtonGroup();
 		$this->addControl($ctrl);
 		return $ctrl;
+	}
+
+	public function addButtonToolbar() {
+		return $this->addBlock('div', 'btn-toolbar');
 	}
 	
 	public function addCloseButton($id = null) {
@@ -69,23 +81,50 @@ class BlockControl extends \PHPUIF\BlockControl {
 	}
 	
 	public function addDropdown($inGroup = false) {
-		$ctrl = new \Bootstrap\Dropdown($this, $inGroup);
+		$ctrl = new \Bootstrap\Dropdown($inGroup);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	
 	public function addNav($style = 'pills') {
-		$ctrl = new Nav($this, $style);
+		$ctrl = new Nav($style);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	
 	public function addAlert($content, $style = 'warning', $dismissable = false) {
-		$ctrl = new Alert($this, $content, $style, $dismissable);
+		$ctrl = new Alert($content, $style, $dismissable);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	
+	public function addTable($cols = 0, $rows = 0, $autoFill = true, $headRowIndex = -1) {
+		$ctrl = new TableControl($cols, $rows, $autoFill = true, $headRowIndex);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+
+	public function addModal($id = null, $fade = true, $header = true, $body = true, $footer = true) {
+		$ctrl = new Modal($id, $fade, $header, $body, $footer);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
 	
+	public function addPagination($count = 0, $baseUrl = null, $active = 0) {
+		$ctrl = new Pagination($count, $baseUrl, $active);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
 	
+	public function addTabContent() {
+		$ctrl = new TabContent();
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+	
+	public function addPanel($style = 'default') {
+		$ctrl = new Panel($style);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
 }

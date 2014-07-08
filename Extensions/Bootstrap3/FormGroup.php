@@ -18,6 +18,8 @@ class FormGroup extends Form {
 
 	public $textField;
 	
+	public $textArea;
+	
 	public $checkbox;
 	
 	public $radioButton;
@@ -30,8 +32,8 @@ class FormGroup extends Form {
 	
 	private $validationStateClass = array('has-success', 'has-warning', 'has-error');
 	
-	function __construct($parent) {
-		parent::__construct($parent, 3, null);
+	function __construct() {
+		parent::__construct(3, null);
 		
 		$this->tag = 'div';
 		

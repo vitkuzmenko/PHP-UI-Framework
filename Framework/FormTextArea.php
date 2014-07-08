@@ -30,8 +30,8 @@ class FormTextArea extends FormControl {
 	 */
 	protected $cols;
 	
-	public function __construct($parent, $name = null, $cols = 40, $rows = 4) {
-		parent::__construct($parent, $name);
+	public function __construct($name = null, $cols = 40, $rows = 4) {
+		parent::__construct($name);
 		
 		$this->tag = 'textarea';
 		$this->rows = $rows;

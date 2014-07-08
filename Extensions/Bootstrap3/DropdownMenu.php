@@ -12,8 +12,8 @@ namespace Bootstrap;
 
 class DropdownMenu extends \PHPUIF\ListControl {
 	
-	public function __construct($parent) {
-		parent::__construct($parent, 'ul');
+	public function __construct() {
+		parent::__construct('ul');
 		
 		$this->addClass('dropdown-menu');
 	}
@@ -23,7 +23,7 @@ class DropdownMenu extends \PHPUIF\ListControl {
 	}
 
 	public function addItem($title = null, $href = null, $active = false, $disabled = false, $header = false) {
-		$ctrl = new MenuItem($this, $title, $href, $active, $disabled, $header);
+		$ctrl = new MenuItem($title, $href, $active, $disabled, $header);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}

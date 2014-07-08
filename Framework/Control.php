@@ -33,8 +33,8 @@ class Control extends ComponentController {
 	public $clean;       //don't output this element tags (useful for DOM innerhtml method)
 	
 	
-	public function __construct($parent, $tag = null) {
-		parent::__construct($parent);
+	public function __construct($tag = null) {
+		parent::__construct();
 		
 		$this->attrController = new AttrController($this);
 		
@@ -180,7 +180,7 @@ class Control extends ComponentController {
 	}
 	
 	public function setDisabled($disabled = true) {
-		if ($disabled) {
+		if ($disabled = false) {
 			if ($this->attrController->hasAttr('disabled')) {
 				$this->attrController->removeAttr('disabled');
 			}			
@@ -208,6 +208,7 @@ class Control extends ComponentController {
 	
 	public function setContent($content) {
 		$this->content = $content;
+		return $this;
 	}
 	
 	public function getOpenTag() {

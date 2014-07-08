@@ -38,8 +38,8 @@ class Form extends \PHPUIF\Form {
 	
 	private $labelOffset = 2;
 	
-	public function __construct($parent, $method, $name, $action = null, $nameAsId = true) {
-		parent::__construct($parent, $method, $name, $action, $nameAsId);
+	public function __construct($method, $name, $action = null, $nameAsId = true) {
+		parent::__construct($method, $name, $action, $nameAsId);
 	}
 	
 	public function setFormInline($formInline = true, $hideLabels = false) {
@@ -107,8 +107,8 @@ class Form extends \PHPUIF\Form {
 
 	// !InputGroup
 	
-	public function addInputGroup() {
-		$ctrl = new InputGroup($this);
+	public function addInputGroup($name = null, $placeholder = null, $value = null) {
+		$ctrl = new InputGroup($name, $placeholder, $value);
 		$ctrl->nameAsId = $this->nameAsId;
 		$this->addControl($ctrl);
 		return $ctrl;
@@ -190,6 +190,7 @@ class Form extends \PHPUIF\Form {
 		$formGroup = $this->parentForNonLabelFormGroup();
 		$formGroup->formInline = $this->formInline;
 		$formGroup->checkbox = $formGroup->addCheckBoxSet($name, $text, $checked);
+		$formGroup->label = $formGroup->checkbox->parentControl;
 		return $formGroup;
 	}
 
@@ -203,6 +204,12 @@ class Form extends \PHPUIF\Form {
 	public function addFormGroupWithSelectField($name, $label, array $value = array(), array $text = array(), $selectedValue = null) {
 		$formGroup = $this->addEmptyFormGroup($name, $label);
 		$formGroup->selectField = $formGroup->controlParent->addSelectField($name, $value, $text, $selectedValue);		
+		return $formGroup;
+	}
+
+	public function addFormGroupWithLabelAndTextArea($name, $label = null, $placeholder = null, $value = null) {
+		$formGroup = $this->addEmptyFormGroup($name, $label);
+		$formGroup->textArea = $formGroup->controlParent->addTextArea($name, $placeholder, $value);
 		return $formGroup;
 	}
 	
@@ -246,7 +253,7 @@ class Form extends \PHPUIF\Form {
 	// !Block
 
 	public function addBlock($tag = null, $class = null, $id = null, $content = null) {
-		$ctrl = new Form($this, 4, null);
+		$ctrl = new Form(4, null);
 		$ctrl->tag = $tag;
 		
 		if ($tag == null) {
@@ -279,10 +286,14 @@ class Form extends \PHPUIF\Form {
 		return $this->addBlock('span', $class, $content);
 	}
 	
+	public function addFa($icon) {
+		return $this->addSpan('fa fa-' . $icon);
+	}
+	
 	public function addSection($class = null, $id = null, $content = null) {
 		return $this->addBlock('section', $class, $content);
 	}
-	
+		
 	public function addHelpBlock($text = null) {
 		if ($this->formInline) {
 			$tag = 'span';
@@ -293,10 +304,15 @@ class Form extends \PHPUIF\Form {
 	}
 	
 	public function addButton($title, $name = null, $style = 'default') {
-		$ctrl = new Button($this, $title, $name, $style);
+		$ctrl = new Button($title, $name, $style);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
-
+	
+	public function addAlert($content, $style = 'warning', $dismissable = false) {
+		$ctrl = new Alert($content, $style, $dismissable);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
 
 }

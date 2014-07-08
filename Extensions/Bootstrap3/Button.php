@@ -62,8 +62,12 @@ class Button extends BlockControl {
 	
 	public $submit = false;
 	
-	function __construct($parent, $title = null, $id = null, $style = 'default', $size = null) {
-		parent::__construct($parent, 'button');
+	public $glyph;
+	
+	public $fa;
+	
+	function __construct($title = null, $id = null, $style = 'default', $size = null) {
+		parent::__construct('button');
 		
 		$this->setId($id);
 		$this->setClass('btn');
@@ -74,6 +78,13 @@ class Button extends BlockControl {
 		$this->setButtonTitle($title);
 	}
 	
+	public function setLink($href = null) {
+		if ($href) {
+			$this->tag = 'a';
+			$this->setAttr('href', $href);
+		}
+	}
+	
 	public function setSubmit($bool = true) {
 		$this->submit = $bool;
 		return $this;
@@ -81,6 +92,36 @@ class Button extends BlockControl {
 	
 	public function setButtonTitle($value = null) {
 		$this->title = $value;
+	}
+	
+	public function setGlyph($glyph = null) {
+		$this->glyph = $glyph;		
+	}
+
+	public function setFa($fa = null) {
+		$this->fa = $fa;		
+	}
+	
+	private function addGlyph() {
+		if ($this->glyph) {
+			$this->addSpan('glyphicon glyphicon-' . $this->glyph);
+		}
+	}
+	
+	public function setDataToggle($value = null) {
+		return $this->setAttr('data-toggle', $value);
+	}
+	
+	public function setDataDismiss($value = null) {
+		return $this->setAttr('data-dismiss', $value);
+	}
+	
+	public function setDataTarget($value = null) {
+		return $this->setAttr('data-target', $value);
+	}
+	
+	public function setDataLoadingText($value = null) {
+		return $this->setAttr('data-loading-text', $value);
 	}
 	
 	/**
@@ -207,7 +248,14 @@ class Button extends BlockControl {
 	}
 	
 	public function getComplete() {
+		if ($this->glyph) {
+			$this->addGlyph();
+		} else if ($this->fa) {
+			$this->addFa($this->fa);
+		}
+
 		$this->addContent($this->title);
+		
 		$this->addBtnClass($this->size);		
 		$this->addBtnClass($this->style);
 		

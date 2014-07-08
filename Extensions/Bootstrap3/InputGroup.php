@@ -20,14 +20,14 @@ class InputGroup extends Form {
 	
 	public $size;
 	
-	public function __construct($parent, $name = null, $placeholder = null, $value = null) {
-		parent::__construct($parent, 4, null);
+	public function __construct($name = null, $placeholder = null, $value = null) {
+		parent::__construct(4, null);
 		
 		$this->tag = 'div';
 		
 		$this->setClass('input-group');
 		
-		$this->initTextField($name, $placeholder, $value);
+		$this->textField($name, $placeholder, $value);
 	}
 	
 	// !Size
@@ -51,12 +51,19 @@ class InputGroup extends Form {
 	
 	// !Controls
 	
-	public function initTextField($name = null, $placeholder = null, $value = null) {
-		$ctrl = new \PHPUIF\FormInput($this, 'text');
+	public function textField($name = null, $placeholder = null, $value = null) {
+		if ($this->textField) {
+			return $this->textField;
+		}
+	
+		$ctrl = new \PHPUIF\FormInput('text');
 		$ctrl->setClass('form-control');
 		if ($this->nameAsId) {
 			$ctrl->setId($name);
 		}
+		
+		$ctrl->setPlaceholder($placeholder);
+		$ctrl->setValue($value);
 		
 		$this->textField = $ctrl;
 		
@@ -64,7 +71,7 @@ class InputGroup extends Form {
 	}
 
 	public function getAddon($content = null, $isButtonAddon = false) {
-		$ctrl = new Form($this, 4, null);
+		$ctrl = new Form(4, null);
 		$ctrl->tag = 'span';
 		if ($isButtonAddon) {
 			$ctrl->setClass('input-group-btn');

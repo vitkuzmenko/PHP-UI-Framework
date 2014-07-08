@@ -16,8 +16,8 @@ abstract class ObjectController {
 
 	protected $parentControl; // Parent object reference
 	
-	public function __construct($parent = null) {
-		$this->parentControl = $parent;
+	public function __construct() {
+
 	}
 	
 	public function __get($key) {

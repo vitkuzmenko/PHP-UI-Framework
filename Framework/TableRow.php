@@ -30,9 +30,13 @@ class TableRow extends OwnedControl {
 	 */
 	public $isHeading;
 	
-	public function __construct($parent, $isHeading = false) {
-		parent::__construct($parent, 'tr');
+	public function __construct($isHeading = false) {
+		parent::__construct('tr');
 		$this->isHeading = $isHeading;
+	}
+	
+	public function setHeader($bool = true) {
+		$this->isHeading = $bool;
 	}
 	
 	/**
@@ -119,7 +123,6 @@ class TableRow extends OwnedControl {
 	 */
 	public function fill(array $values = array()) {
 		$cells = $this->getCells();
-		
 		for ($i = 0; (($i < count($values)) && ($i < $this->cellCount)); $i++) {
 			$cells[$i]->setContent($values[$i]);
 		}

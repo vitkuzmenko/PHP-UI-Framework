@@ -16,8 +16,8 @@ class Alert extends BlockControl {
 	
 	public $dismissable = false;
 	
-	public function __construct($parent, $content = null, $style = 'warning', $dismissable = false) {
-		parent::__construct($parent, 'div');
+	public function __construct($content = null, $style = 'warning', $dismissable = false) {
+		parent::__construct('div');
 		
 		$this->addClass('alert');
 		$this->addContent($content);

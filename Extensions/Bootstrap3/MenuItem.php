@@ -26,10 +26,14 @@ class MenuItem extends BlockControl {
 	
 	public $menu;
 	
+	public $glyph;
+	
+	public $fa;
+	
 	protected $badge;
 	
-	public function __construct($parent, $title = null, $href = null, $active = false, $disabled = false, $header = false) {
-		parent::__construct($parent, 'li');
+	public function __construct($title = null, $href = null, $active = false, $disabled = false, $header = false) {
+		parent::__construct('li');
 		
 		$this->setTitle($title);
 		$this->setHref($href);
@@ -52,8 +56,21 @@ class MenuItem extends BlockControl {
 		return $this;
 	}
 	
-	private function initLink($href = null, $title = null) {
-		$this->link = new \PHPUIF\LinkControl($this, $href, $title);
+	public function setGlyph($value = null) {
+		$this->glyph = $value;
+	}
+
+	public function setFa($value = null) {
+		$this->fa = $value;
+	}
+		
+	public function link() {
+		if ($this->link) {
+			return $this->link;
+		}
+		
+		$this->link = new \PHPUIF\LinkControl($this->href, $this->title);
+		
 		return $this->link;
 	}
 
@@ -115,7 +132,7 @@ class MenuItem extends BlockControl {
 
 
 	private function setLinkAttributes() {
-		$link = $this->initLink($this->href, $this->title);
+		$link = $this->link();
 		$this->addControl($link);
 		
 		if ($this->menu) {
@@ -123,7 +140,16 @@ class MenuItem extends BlockControl {
 			$this->link->addClass('dropdown-toggle');
 			$this->link->setAttr('data-toggle', 'dropdown');
 			$this->link->addSpan('caret');
+			
 			$this->addControl($this->menu);
+		}
+
+		if ($this->glyph) {
+			$this->link->addSpan('glyphicon glyphicon-' . $this->glyph);
+		}
+
+		if ($this->fa) {
+			$this->link->addSpan('fa fa-' . $this->fa);
 		}
 
 		if ($this->badge) {

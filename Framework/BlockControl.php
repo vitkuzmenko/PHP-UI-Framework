@@ -14,12 +14,12 @@ require_once realpath(dirname(__FILE__)) . '/PHPUIFramework.php';
 
 class BlockControl extends OwnedControl {
 	
-	public function __construct($parent = null, $tag = 'div') {
-		parent::__construct($parent, $tag);
+	public function __construct($tag = 'div') {
+		parent::__construct($tag);
 	}
 	
 	public function addContent($content = null) {
-		$ctrl = new BlockControl($this, null);
+		$ctrl = new BlockControl(null);
 		$ctrl->clean = true;
 		$ctrl->setContent($content);
 		$this->addControl($ctrl);
@@ -27,14 +27,14 @@ class BlockControl extends OwnedControl {
 	}
 	
 	public function addSimple($tag) {
-		$ctrl = new BlockControl($this, $tag);
+		$ctrl = new BlockControl($tag);
 		$ctrl->hasClose = false;
 		$this->AddControl($ctrl);
 		return $ctrl;
 	}
 	
 	public function addBlock($tag = null, $class = null, $id = null, $content = null) {
-		$ctrl = new BlockControl($this, $tag);
+		$ctrl = new BlockControl($tag);
 		
 		if ($tag == null) {
 			$ctrl->clear = true;
@@ -45,6 +45,10 @@ class BlockControl extends OwnedControl {
 		$ctrl->setContent($content);
 		$this->addControl($ctrl);
 		return $ctrl;
+	}
+
+	public function addP($class = null, $id = null, $content = null) {
+		return $this->addBlock('p', $class, $id, $content);
 	}
 	
 	public function addDiv($class = null, $id = null, $content = null) {
@@ -59,18 +63,18 @@ class BlockControl extends OwnedControl {
 		return $this->addBlock('section', $class, $id, $content);
 	}
 
-	public function addHeader($level, $value) {
-		return $this->addBlock(sprintf('h%d', $level), null, null, $value);
+	public function addHeader($level, $value, $class = null) {
+		return $this->addBlock(sprintf('h%d', $level), $class, null, $value);
 	}
 	
 	public function addLink($href, $title = null, $class = null, $hint = null) {
-		$ctrl = new LinkControl($this, $href, $title);
+		$ctrl = new LinkControl($href, $title);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	
 	public function addImage($src, $alt = null, array $size = array()) {
-		$ctrl = new Image($this, $src, $alt);
+		$ctrl = new Image($src, $alt);
 		$ctrl->setSize($size[0], $size[1]);
 		$this->addControl($ctrl);
 		return $ctrl;
@@ -84,19 +88,19 @@ class BlockControl extends OwnedControl {
 	}
 	
 	public function addForm($method, $name, $action = null, $nameAsId = true) {
-		$ctrl = new Form($this, $method, $name, $action, $nameAsId);
+		$ctrl = new Form($method, $name, $action, $nameAsId);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	
 	public function addTable($cols = 0, $rows = 0, $autoFill = true, $headRowIndex = -1) {
-		$ctrl = new TableControl($this, $cols, $rows, $autoFill = true, $headRowIndex);
+		$ctrl = new TableControl($cols, $rows, $autoFill = true, $headRowIndex);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 
 	public function addList($type = 'ul') {
-		$ctrl = new ListControl($this, $type);
+		$ctrl = new ListControl($type);
 		$this->AddControl($ctrl);
 		return $ctrl;
 	}

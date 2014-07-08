@@ -8,9 +8,7 @@
  * TableCell
  */
 
-namespace PHPUIF;
-
-require_once realpath(dirname(__FILE__)) . '/PHPUIFramework.php';
+namespace Bootstrap;
 
 class TableCell extends BlockControl {
 	

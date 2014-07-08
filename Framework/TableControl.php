@@ -12,7 +12,7 @@ namespace PHPUIF;
 
 require_once realpath(dirname(__FILE__)) . '/PHPUIFramework.php';
 
-class TableControl extends OwnedControl {
+class TableControl extends BlockControl {
 	
 	protected $cols;
 	
@@ -22,8 +22,8 @@ class TableControl extends OwnedControl {
 	
 	protected $isFilled;
 	
-	public function __construct($parent, $cols, $rows, $autoFill = true, $headRow = -1) {
-		parent::__construct($parent, 'table');
+	public function __construct($cols = 0, $rows = 0, $autoFill = true, $headRow = -1) {
+		parent::__construct('table');
 		
 		$this->headRow = $headRow;
 		$this->cols = $cols;
@@ -32,6 +32,10 @@ class TableControl extends OwnedControl {
 		if ($autoFill) {
 			$this->fillTable();
 		}
+	}
+	
+	public function setHeadRowIndex($value = 0) {
+		$this->headRow = $value;
 	}
 	
 	public function setBorder($value) {
@@ -51,7 +55,7 @@ class TableControl extends OwnedControl {
 	}
 	
 	protected function createRow($isHead = false) {
-		$ctrl = new TableRow($this, $isHead);
+		$ctrl = new TableRow($isHead);
 		$this->AddControl($ctrl);
 		return $ctrl;
 	}
@@ -73,6 +77,8 @@ class TableControl extends OwnedControl {
 
 	public function addRow(array $value = array(), $isHeading = false) {
 		$row = $this->createRow($isHeading);
+		
+		$this->cols = count($value);
 		
 		$this->rows++;
 		
@@ -102,7 +108,7 @@ class TableControl extends OwnedControl {
 		}
 	}
 	
-	public function cell($col, $row) {
+	public function cell($row, $col) {
 		if (!$this->isFilled) {
 			return false;
 		}

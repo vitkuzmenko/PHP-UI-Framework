@@ -14,8 +14,8 @@ require_once realpath(dirname(__FILE__)) . '/PHPUIFramework.php';
 
 class DocumentBody extends BlockControl {
 	
-	public function __construct($parent) {
-		parent::__construct($parent);
+	public function __construct() {
+		parent::__construct();
 		$this->tag = 'body';
 	}
 

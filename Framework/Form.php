@@ -38,8 +38,8 @@ class Form extends BlockControl {
 	 */
 	public $nameAsId;
 	
-	public function __construct($parent, $method, $name, $action = null, $nameAsId = true) {
-		parent::__construct($parent);
+	public function __construct($method, $name, $action = null, $nameAsId = true) {
+		parent::__construct();
 		$this->tag = 'form';
 		$this->setAttr('name', $name);
 		/* Устанавливаем имя формы как идентификатор */
@@ -91,7 +91,7 @@ class Form extends BlockControl {
 	// !Add Controls
 	
 	public function addInput($type, $name = null) {
-		$ctrl = new FormInput($this, $type, $name);
+		$ctrl = new FormInput($type, $name);
 		if ($this->nameAsId) {
 			$ctrl->setId($name);
 		}
@@ -142,15 +142,17 @@ class Form extends BlockControl {
 	}
 	
 	public function addCheckBox($name = null, $checked = false) {
-		$ctrl = $this->addInput('checkbox', $name);
+		$ctrl = new CheckBoxControl($name);
 		
 		if ($this->nameAsId) {
 			$ctrl->setId($name);
 		}
 		
 		if ($checked) {
-			$ctrl->setAttr('checked', 'checked');
+			$ctrl->setChecked($checked);
 		}
+		
+		$this->addControl($ctrl);
 		return $ctrl;
 	}
 
@@ -164,7 +166,7 @@ class Form extends BlockControl {
 	}		
 
 	public function addSelectField($name = null, array $value = array(), array $text = array(), $selectedValue = null) {
-		$ctrl = new FormSelect($this, $name);
+		$ctrl = new FormSelect($name);
 		$ctrl->addItems($value, $text);
 		
 		if ($this->nameAsId) {
@@ -180,7 +182,7 @@ class Form extends BlockControl {
 	}
 	
 	public function addTextArea($name = null, $placeholder = null, $value = null) {
-		$ctrl = new FormTextArea($this, $name);
+		$ctrl = new FormTextArea($name);
 		$ctrl->setPlaceholder($placeholder);
 		$ctrl->setContent($value);
 		
@@ -195,7 +197,7 @@ class Form extends BlockControl {
 	// !Block
 
 	public function addBlock($tag = null, $class = null, $id = null, $content = null) {
-		$ctrl = new Form($this, 4, null);
+		$ctrl = new Form(4, null);
 		$ctrl->tag = $tag;
 		
 		if ($tag == null) {

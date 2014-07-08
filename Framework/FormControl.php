@@ -22,8 +22,8 @@ class FormControl extends OwnedControl {
 	 */
 	public $nameAsId;
 	
-	public function __construct($parent, $name = null) {
-		parent::__construct($parent);
+	public function __construct($name = null) {
+		parent::__construct();
 		$this->name     = $name;
 		$this->nameAsId = false;
 

@@ -38,8 +38,8 @@ class ListControl extends BlockControl {
 	 */
 	protected $listItemType;
 	
-	public function __construct($parent, $type = 'ul') {
-		parent::__construct($parent, $type);
+	public function __construct($type = 'ul') {
+		parent::__construct($type);
 		$this->setType($type);
 	}
 	
@@ -93,7 +93,7 @@ class ListControl extends BlockControl {
 	 * @return void
 	 */
 	public function addItem($content = null) {
-		$ctrl = new BlockControl($this, $this->itemTag);
+		$ctrl = new BlockControl($this->itemTag);
 		$ctrl->setContent($content);
 		$this->AddControl($ctrl);
 		return $ctrl;

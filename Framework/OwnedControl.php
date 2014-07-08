@@ -20,8 +20,8 @@ class OwnedControl extends Control {
 	
 	//NOTE: text from $content placed between this element open tag and first child open tag
 	
-	public function __construct($parent, $tag = null) {
-		parent::__construct($parent, $tag);
+	public function __construct($tag = null) {
+		parent::__construct($tag);
 		
 		$this->controls = array();
 		$this->endcontent = null;
@@ -42,13 +42,13 @@ class OwnedControl extends Control {
 	}
 	
 	public function createChildControl($tag) {
-		$ctrl = new Control($this, $tag);
+		$ctrl = new Control($tag);
 		array_push($this->controls, $ctrl);
 		return $ctrl;
 	}
 	
 	public function createControl($tag) {
-		$ctrl = new OwnedControl($this, $tag);
+		$ctrl = new OwnedControl($tag);
 		array_push($this->controls, $ctrl);
 		return $ctrl;
 	}
@@ -100,14 +100,26 @@ class OwnedControl extends Control {
 		$content = $this->getOpenTag();
 		
 		foreach ($this->controls as $ctrl) {
-			$ctrl->tabSpaceLevel = $ctrl->parentControl->tabSpaceLevel() . $this->tabSpace();
-			$content .= $this->offset() . $ctrl->tabSpaceLevel() . $ctrl->GetComplete();
+			if (is_null($this->tag) || $this->clean) {
+				$ctrl->tabSpaceLevel = $ctrl->parentControl->tabSpaceLevel();
+				$content .= $this->offset() . $ctrl->tabSpaceLevel() . $ctrl->GetComplete();
+			} else {
+				$ctrl->tabSpaceLevel = $ctrl->parentControl->tabSpaceLevel() . $this->tabSpace();
+				$content .= $this->offset() . $ctrl->tabSpaceLevel() . $ctrl->GetComplete();
+			}
+			
 		}
 		
 		$complete = $content . $this->endContent;
 		
 		if ($this->hasChild()) {
-			$complete .= $this->content . $this->offset() . $this->tabSpaceLevel();
+			
+			if (is_null($this->tag) || $this->clean) {
+				$complete .= $this->content . $this->tabSpaceLevel();
+			} else {
+				$complete .= $this->content . $this->offset() . $this->tabSpaceLevel();
+			}
+		
 		} else {
 			$complete .= $this->content;
 		}

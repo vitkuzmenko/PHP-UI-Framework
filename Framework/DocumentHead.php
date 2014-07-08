@@ -16,10 +16,8 @@ class DocumentHead extends BlockControl {
 
 	protected $title;
 	
-	public function __construct($parent, $title = null, $charset = 'utf-8') {
-		parent::__construct($parent);
-		
-		$this->tag = "head";
+	public function __construct($title = null, $charset = 'utf-8') {
+		parent::__construct('head');
 		
 		$this->setTitle($title);
 		$this->addMetaHttp('Content-Type', 'text/html; charset=' . $charset);
@@ -32,7 +30,7 @@ class DocumentHead extends BlockControl {
 	}
 		
 	public function addCssFile($file) {
-		$ctrl = new BlockControl($this, 'link');
+		$ctrl = new BlockControl('link');
 		$ctrl->hasClose = false;
 		$ctrl->setAttr('rel','stylesheet');
 		$ctrl->setAttr('href', $file);
@@ -44,7 +42,7 @@ class DocumentHead extends BlockControl {
 		$ctrl = $this->getFirstControl('title');
 		
 		if (!$ctrl) {
-			$ctrl = new BlockControl($this, 'title');
+			$ctrl = new BlockControl('title');
 			$this->addControl($ctrl);
 		}
 		
@@ -74,7 +72,7 @@ class DocumentHead extends BlockControl {
 	}
 	
 	public function addFavIcon($file) {
-		$ctrl = new BlockControl($this, 'link');
+		$ctrl = new BlockControl('link');
 		$ctrl->setAttr('rel','SHORTCUT ICON');
 		$ctrl->setAttr('href', $file);
 		$ctrl->setAttr('type', 'image/png');

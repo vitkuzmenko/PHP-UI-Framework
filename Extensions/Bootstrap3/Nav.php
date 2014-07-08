@@ -14,12 +14,12 @@ class Nav extends \PHPUIF\ListControl {
 	
 	public $style = 'pills';
 	
-	public $allowStyle = array('tabs', 'pills', 'stacked');
+	public $allowStyle = array('tabs', 'pills', 'pills nav-stacked');
 	
 	public $justified = false;
 	
-	public function __construct($parent, $style = 'pills') {
-		parent::__construct($parent, 'ul');
+	public function __construct($style = 'pills') {
+		parent::__construct('ul');
 		
 		$this->addClass('nav');
 				
@@ -47,7 +47,7 @@ class Nav extends \PHPUIF\ListControl {
 	}
 	
 	public function setStackedStyle() {
-		return $this->setNavStyle('stacked');
+		return $this->setNavStyle('pills nav-stacked');
 	}
 	
 	public function setJustified($bool = true) {
@@ -58,7 +58,7 @@ class Nav extends \PHPUIF\ListControl {
 	// !Items
 
 	public function addItem($title = null, $href = null, $active = false, $disabled = false, $header = false) {
-		$ctrl = new MenuItem($this, $title, $href, $active, $disabled, $header);
+		$ctrl = new MenuItem($title, $href, $active, $disabled, $header);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
@@ -66,7 +66,7 @@ class Nav extends \PHPUIF\ListControl {
 	// !Dropdown
 	
 	public function addDropdown($title = null, $href = null, $active = false, $disabled = false, $header = false) {
-		$ctrl = new MenuItem($this, $title, $href, $active, $disabled, $header);
+		$ctrl = new MenuItem($title, $href, $active, $disabled, $header);
 		$ctrl->addDropdown();
 		$this->addControl($ctrl);
 		return $ctrl;
