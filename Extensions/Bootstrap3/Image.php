@@ -15,9 +15,7 @@ class Image extends \PHPUIF\Image {
 	public $style;
 	
 	public function setImageStyle($style = null) {
-		if ($style) {
-			$this->style = sprintf('img-%s', $style);
-		}
+		$this->style = $style;
 	}
 	
 	public function setRoundedStyle() {
@@ -32,4 +30,13 @@ class Image extends \PHPUIF\Image {
 		$this->setImageStyle('thumbnail');
 	}
 
+	public function getComplete() {
+	
+		if ($this->style) {
+			$this->addClass(sprintf('img-%s', $this->style));
+		}
+		
+		return parent::getComplete();
+	}
+	
 }

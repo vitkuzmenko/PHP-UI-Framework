@@ -30,6 +30,8 @@ class MenuItem extends BlockControl {
 	
 	public $fa;
 	
+	public $spanTitle;
+	
 	protected $badge;
 	
 	public function __construct($title = null, $href = null, $active = false, $disabled = false, $header = false) {
@@ -72,6 +74,19 @@ class MenuItem extends BlockControl {
 		$this->link = new \PHPUIF\LinkControl($this->href, $this->title);
 		
 		return $this->link;
+	}
+	
+	public function spanTitle($class = null, $id = null, $content = null) {
+		if ($this->spanTitle) {
+			return $this->spanTitle;
+		}
+				
+		$this->spanTitle = new BlockControl('span');
+		$this->spanTitle->addClass($class);
+		$this->spanTitle->setId($id);
+		$this->spanTitle->setContent($content);
+		
+		return $this->spanTitle;
 	}
 
 	public function setHeader($bool = false) {
@@ -150,6 +165,20 @@ class MenuItem extends BlockControl {
 
 		if ($this->fa) {
 			$this->link->addSpan('fa fa-' . $this->fa);
+		}
+		
+		if ($this->spanTitle) {
+			$title = $this->content;
+			
+			$this->content = null;
+			
+			$span = $this->spanTitle;
+			if (!$span->content) {
+				$span->setContent($this->title);
+			}
+			
+			$this->link()->addControl($span);
+			$this->link()->setLinkTitle(null);
 		}
 
 		if ($this->badge) {

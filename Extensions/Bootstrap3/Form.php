@@ -279,11 +279,11 @@ class Form extends \PHPUIF\Form {
 	}
 
 	public function addDiv($class = null, $id = null, $content = null) {
-		return $this->addBlock('div', $class, $content);
+		return $this->addBlock('div', $class, $id, $content);
 	}
 
 	public function addSpan($class = null, $id = null, $content = null) {
-		return $this->addBlock('span', $class, $content);
+		return $this->addBlock('span', $class, $id, $content);
 	}
 	
 	public function addFa($icon) {
@@ -291,7 +291,7 @@ class Form extends \PHPUIF\Form {
 	}
 	
 	public function addSection($class = null, $id = null, $content = null) {
-		return $this->addBlock('section', $class, $content);
+		return $this->addBlock('section', $class, $id, $content);
 	}
 		
 	public function addHelpBlock($text = null) {

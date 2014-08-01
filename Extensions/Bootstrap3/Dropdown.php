@@ -195,9 +195,9 @@ class Dropdown extends BlockControl {
 	public function getComplete() {
 		
 		if ($this->inGroup) {
-			$this->setClass('btn-group');
+			$this->addClass('btn-group');
 		} else {
-			$this->setClass('dropdown');
+			$this->addClass('dropdown');
 		}
 		
 		if ($this->dropUp) {

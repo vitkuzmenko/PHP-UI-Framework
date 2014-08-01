@@ -69,13 +69,16 @@ class BlockControl extends OwnedControl {
 	
 	public function addLink($href, $title = null, $class = null, $hint = null) {
 		$ctrl = new LinkControl($href, $title);
+		$ctrl->addClass($class);
 		$this->addControl($ctrl);
 		return $ctrl;
 	}
 	
 	public function addImage($src, $alt = null, array $size = array()) {
 		$ctrl = new Image($src, $alt);
-		$ctrl->setSize($size[0], $size[1]);
+		if ($size) {
+			$ctrl->setSize($size[0], $size[1]);
+		}
 		$this->addControl($ctrl);
 		return $ctrl;
 	}

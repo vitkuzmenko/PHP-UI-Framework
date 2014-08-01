@@ -65,7 +65,7 @@ class Button extends BlockControl {
 	public $glyph;
 	
 	public $fa;
-	
+		
 	function __construct($title = null, $id = null, $style = 'default', $size = null) {
 		parent::__construct('button');
 		
@@ -168,6 +168,14 @@ class Button extends BlockControl {
 		return $this->setSize('xs');
 	}
 	
+	public function addFile($name) {
+		$input = $this->addSimple('input');
+		$input->setAttr('type', 'file');
+		$input->setName($name);
+		$this->addClass('file-holder');
+		return $input;
+	}
+	
 	// !Button Type
 	
 	/**
@@ -254,7 +262,11 @@ class Button extends BlockControl {
 			$this->addFa($this->fa);
 		}
 
-		$this->addContent($this->title);
+		if ($this->controls) {
+			$this->addContent($this->title);
+		} else {
+			$this->setContent($this->title);
+		}
 		
 		$this->addBtnClass($this->size);		
 		$this->addBtnClass($this->style);

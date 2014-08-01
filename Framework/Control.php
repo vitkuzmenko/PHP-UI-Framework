@@ -207,7 +207,12 @@ class Control extends ComponentController {
 	}
 	
 	public function setContent($content) {
-		$this->content = $content;
+		if (is_string($content) || is_null($content) || is_numeric($content) || is_array($content)) {
+			$this->content = $content;
+		} else {
+			$this->addControl($content);
+		}
+		
 		return $this;
 	}
 	

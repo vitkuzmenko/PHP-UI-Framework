@@ -26,7 +26,7 @@ class TableControl extends \PHPUIF\TableControl {
 		
 	}
 	
-	public function setStripped($value = true) {
+	public function setStriped($value = true) {
     	$this->stripped = $value;
 	}
 

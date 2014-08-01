@@ -58,6 +58,7 @@ class InputGroup extends Form {
 	
 		$ctrl = new \PHPUIF\FormInput('text');
 		$ctrl->setClass('form-control');
+		$ctrl->setName($name);
 		if ($this->nameAsId) {
 			$ctrl->setId($name);
 		}

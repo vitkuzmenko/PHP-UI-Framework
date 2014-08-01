@@ -48,6 +48,16 @@ class BlockControl extends \PHPUIF\BlockControl {
 		return $this->addBlock('section', $class, $id, $content);
 	}
 	
+	public function addImage($src, $alt = null, array $size = array()) {
+		$ctrl = new Image($src, $alt);
+		if ($size) {
+			$ctrl->setSize($size[0], $size[1]);
+		}
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+
+	
 	public function addFa($icon) {
 		return $this->addSpan('fa fa-' . $icon);
 	}
@@ -124,6 +134,12 @@ class BlockControl extends \PHPUIF\BlockControl {
 	
 	public function addPanel($style = 'default') {
 		$ctrl = new Panel($style);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+	
+	public function addProgress($style = null, $value = 0) {
+		$ctrl = new Progress();
 		$this->addControl($ctrl);
 		return $ctrl;
 	}

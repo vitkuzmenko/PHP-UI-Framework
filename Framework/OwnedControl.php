@@ -36,9 +36,13 @@ class OwnedControl extends Control {
 	}
 	
 	public function addControl($ctrl) {
-		array_push($this->controls, $ctrl);
-		$ctrl->parentControl = $this;
-		return $ctrl;
+		if (is_null($ctrl) || is_string($ctrl) || is_array($ctrl)) {
+			exit($ctrl . ' - Is No Control');
+		} else {
+			array_push($this->controls, $ctrl);
+			$ctrl->parentControl = $this;
+			return $ctrl;			
+		}
 	}
 	
 	public function createChildControl($tag) {

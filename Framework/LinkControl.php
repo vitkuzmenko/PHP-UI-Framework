@@ -54,7 +54,12 @@ class LinkControl extends BlockControl {
 		if ($this->textInSpan) {
 			$this->addControl($this->textSpan());
 		} else {
-			$this->addContent($this->title);
+			if ($this->controls) {
+				$this->addContent($this->title);
+			} else {
+				$this->setContent($this->title);
+			}
+			
 		}
 				
 		return parent::getComplete();

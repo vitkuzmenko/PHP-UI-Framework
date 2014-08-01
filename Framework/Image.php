@@ -13,7 +13,7 @@ namespace PHPUIF;
 class Image extends BlockControl {
 	
 	public function __construct($src = null, $alt = null, $title = null) {
-		parent::__construct('button');
+		parent::__construct('img');
 
 		$this->hasClose= false;
 		
