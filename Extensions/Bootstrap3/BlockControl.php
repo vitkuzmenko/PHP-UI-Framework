@@ -57,6 +57,12 @@ class BlockControl extends \PHPUIF\BlockControl {
 		return $ctrl;
 	}
 
+	public function addLink($href, $title = null, $class = null, $hint = null) {
+		$ctrl = new LinkControl($href, $title);
+		$ctrl->addClass($class);
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
 	
 	public function addFa($icon) {
 		return $this->addSpan('fa fa-' . $icon);

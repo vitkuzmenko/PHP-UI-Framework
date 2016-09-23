@@ -78,7 +78,7 @@ class Dropdown extends BlockControl {
 	}
 	
 	/**
-	 * cofigureButton function.
+	 * configureButton function.
 	 * Configure Button Object
 	 * 
 	 * @access public
@@ -88,7 +88,7 @@ class Dropdown extends BlockControl {
 	 * @param mixed $size (default: null)
 	 * @return void
 	 */
-	public function cofigureButton($title = null, $id = null, $style = 'default', $size = null) {
+	public function configureButton($title = null, $id = null, $style = 'default', $size = null) {
 		$button = new Button($title, $id, $style, $size);
 		$button->setAttr('data-toggle', 'dropdown');
 		

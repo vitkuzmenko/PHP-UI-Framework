@@ -131,6 +131,13 @@ class InputGroup extends Form {
 		return $addon->addButton($title, $id, $style);
 	}
 	
+	// !Link
+	
+	public function addRightAddonWithLink($href, $title, $class = null, $hint = null) {
+		$addon = $this->addRightAddon(null, true);
+		return $addon->addLink($href, $title, $class, $hint);
+	}	
+	
 	public function getComplete() {
 
 		if ($this->size) {
