@@ -26,7 +26,7 @@ class OwnedControl extends Control {
 		$this->controls = array();
 		$this->endcontent = null;
 	}
-	
+		
 	public function controlCount() {
 		return count($this->controls);
 	}
@@ -100,6 +100,8 @@ class OwnedControl extends Control {
 		if (is_array($this->content)) {
 			return null;
 		}
+		
+		$this->configureAttrs();
 		
 		$content = $this->getOpenTag();
 		

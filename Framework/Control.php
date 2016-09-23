@@ -67,6 +67,10 @@ class Control extends ComponentController {
 		}
 	}
 	
+	protected function configureAttrs() {
+		
+	}
+	
 	public function setAttr($key, $value) {
 		$this->attrController->setAttr($key, $value);
 		return $this;

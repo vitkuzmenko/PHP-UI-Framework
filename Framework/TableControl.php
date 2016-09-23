@@ -91,6 +91,12 @@ class TableControl extends BlockControl {
 		return $row;
 	}
 	
+	public function addRowControl($ctrl) {
+		$this->rows++;
+		$this->addControl($ctrl);
+		return $ctrl;
+	}
+	
 	public function row($rowIndex) {
 		if (!$this->isFilled) {
 			return null;
